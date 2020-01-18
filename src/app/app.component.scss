@@ -1,4 +1,5 @@
-$sidemenuWidth: 18vw;
+
+$sidemenuWidth: 15vw;
 $themeColor : rgb(57, 57, 82);
 $highlightColor: rgb(46, 46, 65);
 
@@ -16,9 +17,12 @@ $highlightColor: rgb(46, 46, 65);
 }
 
 #navbar-logo{
-  height:7vh;
-  padding-left: 10px;
-  padding-right: 10px;
+  width: $sidemenuWidth;
+  height: 7vh;
+  padding-left: 1px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-right: 20px;
   box-sizing: border-box;
   background-color: $highlightColor;
 }
@@ -28,22 +32,38 @@ mat-sidenav{
 }
 
 .navmenuitem{
-  height: 8vh;
-  line-height: 8vh;
+  height: 7vh;
+  line-height: 7vh;
   vertical-align: middle;
   padding: 10px;
-  font-size: 120%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, 'Arial Narrow', Arial, sans-serif, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(192, 192, 192);
   padding-left: 18px;
 }
 
-.navmenuitem:hover {
+.selected{
   background-color: $highlightColor;
   padding: 0px;
   .selector{
     display: block;
   }
+}
+
+.deselected{
+  background-color:  $themeColor;
+  padding: 0px;
+  .selector{
+    display: none;
+  }
+}
+
+.navmenuitem:hover {
+  background-color: $highlightColor;
+  padding: 0px;
+  // .selector{
+  //   display: block;
+  // }
 }
 
 .selector{

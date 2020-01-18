@@ -1,3 +1,25 @@
 <mat-toolbar>
+  <img *ngIf = "loggedIn" id="profileImage" class="col-1" [matMenuTriggerFor]="menu" [src]="profile['profilePic']" alt="" class="rounded-circle" srcset="">
+
+  <div *ngIf = "!loggedIn"  class="accountActions">
+    <a class="text-secondary">Register</a>
+    <a class="text-primary">Login</a>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <div class="text-secondary p-2">
+      <fa-icon [icon]="faUserCircle" class="mr-2"></fa-icon>
+      <small>{{profile['name']}}</small>
+    </div>
+    <button mat-menu-item (click)="redirectToAccount">
+      <i class="fa fa-user mr-2"></i>
+      Account
+    </button>
+    <button mat-menu-item (click)="logout">
+      <i class="fa fa-times-circle mr-2"></i>
+      Logout
+    </button>
+
+  </mat-menu>
 
 </mat-toolbar>

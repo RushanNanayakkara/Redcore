@@ -14,13 +14,17 @@ import {
   MatCardModule,
   MatSidenavModule
 } from '@angular/material';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { LoginComponent } from './login/login.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatSidenavModule
+    MatSidenavModule,
+    AngularFontAwesomeModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
