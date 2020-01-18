@@ -1,5 +1,6 @@
 <mat-toolbar>
   <img *ngIf = "loggedIn" id="profileImage" class="col-1" [matMenuTriggerFor]="menu" [src]="profile['profilePic']" alt="" class="rounded-circle" srcset="">
+  <fa-icon *ngIf = "loggedIn" id="notificationIcon"  [matMenuTriggerFor]="notMenu" [icon]="faGlobe" class="mr-2 fa-2x"></fa-icon>
 
   <div *ngIf = "!loggedIn"  class="accountActions">
     <a class="text-secondary">Register</a>
@@ -19,7 +20,16 @@
       <i class="fa fa-times-circle mr-2"></i>
       Logout
     </button>
+  </mat-menu>
 
+  <mat-menu id="notificationMenu" xPosition="before" #notMenu="matMenu">
+    <div class="text-secondary px-3">
+      <fa-icon [matMenuTriggerFor]="notMenu" [icon]="faGlobe" class="mr-2"></fa-icon>
+      <small>Notification List</small>
+    </div>
+    <button *ngFor = "let notification of notifications" mat-menu-item class="notificationItem">
+      {{notification}}
+    </button>
   </mat-menu>
 
 </mat-toolbar>

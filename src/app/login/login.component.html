@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="container center-box">
+  <div id="logo-wrapper">
+    <img src="assets/img/flatLogoNoBackground.png" alt="" id="flatlogo" class="contained">
+    <form id="loginform" method="post">
+      <span id="welcome-text" class="graytext small">Welcome back! Please login to your account.</span>
+      <div class="form-item">
+          <label for="input-email">Email</label>
+          <input type="text" name="email" id="input-email">
+      </div>
+      <hr>
+      <div class="form-item"class="form-item">
+        <label for="input-password">Password</label>
+        <input type="password" name="password" id="input-password">
+      </div>
+      <hr>
+      <div>
+        <input class="ml-3" type="checkbox" name="rememberme" value="remember">
+        <span class="ml-1 form-footer-text">Remember me</span>
+        <a href="#" class="mr-3 form-footer-text float-right">Forgot password?</a>
+      </div>
+      <div id="button-panel" class="mt-3">
+        <button type="button" (click)="login()" class="float-left ml-5 btn-primary pl-2 pr-2 pt-1 pb-1 col-4" style="background-color: rgb(72, 63, 80); border-color: rgb(72, 63, 80); border-radius: 4px;">Login</button>
+        <button type="button" class="float-right mr-5 btn-outline-dark pl-2 pr-2 pt-1 pb-1 col-4 " routerLink='/register' style="background-color: rgba(95, 92, 98, 0); border-width: 1px; border-color: rgb(70, 70, 70,0.85); border-radius: 4px;">Signup</button>
+      </div>
+      <div id="termsofuse">
+        Terms of use.Privacy policy.
+      </div>
+    </form>
+  </div>
+  <div id="login-wrapper">
+      <img src="/assets/img/logo.png" alt="LOGO" class="contained">
+  </div>
+</div>

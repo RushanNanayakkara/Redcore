@@ -1,5 +1,4 @@
-<mat-sidenav-container *ngIf="this.router.url != '/login'" class="main-container">
-
+<mat-sidenav-container *ngIf="this.router.url != '/' && this.router.url != '/register'" class="main-container">
   <mat-sidenav mode="side" opened>
     <div id="logo-container">
       <img id="navbar-logo" src="assets/img/redcore-designer-logo-white.png" alt="" srcset="">
@@ -52,4 +51,4 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-<router-outlet *ngIf ="this.router.url == '/login'" ></router-outlet>
+<router-outlet *ngIf ="this.router.url == '/' || this.router.url == '/register'"  ></router-outlet>
