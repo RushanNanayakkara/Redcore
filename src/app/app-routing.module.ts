@@ -7,7 +7,8 @@ import {LoginComponent } from './login/login.component'
 const routes: Routes = [
   {path:'navbar', component:NavbarComponent},
   {path:'sidemenu', component:SidemenuComponent},
-  {path:'login', component:LoginComponent}
+  {path:'login', component:LoginComponent},
+  {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
 ];
 
 @NgModule({
