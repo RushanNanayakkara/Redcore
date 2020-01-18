@@ -6,6 +6,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component'
 const routes: Routes = [
   {path:'navbar', component:NavbarComponent},
   {path:'sidemenu', component:SidemenuComponent},
+  {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
 ];
 
 @NgModule({
