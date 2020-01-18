@@ -1,0 +1,56 @@
+$sidemenuWidth: 18vw;
+$themeColor : rgb(57, 57, 82);
+$highlightColor: rgb(46, 46, 65);
+
+*{
+  box-sizing: border-box;
+}
+
+.main-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+#navbar-logo{
+  height:7vh;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  background-color: $highlightColor;
+}
+
+mat-sidenav{
+  background-color: $themeColor;
+}
+
+.navmenuitem{
+  height: 8vh;
+  line-height: 8vh;
+  vertical-align: middle;
+  padding: 10px;
+  font-size: 120%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(192, 192, 192);
+  padding-left: 18px;
+}
+
+.navmenuitem:hover {
+  background-color: $highlightColor;
+  padding: 0px;
+  .selector{
+    display: block;
+  }
+}
+
+.selector{
+  width: 0.4vw;
+  height: 100%;
+  background-color: rgb(135, 135, 197);
+  float: left;
+  margin-right: 1vw;
+  display: none;
+}
