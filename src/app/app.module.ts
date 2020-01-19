@@ -17,7 +17,8 @@ import {
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './register/register.component';
+import { MydesignsComponent } from './mydesigns/mydesigns.component'
 
 
 
@@ -27,7 +28,8 @@ import { RegisterComponent } from './register/register.component'
     NavbarComponent,
     SidemenuComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MydesignsComponent
   ],
   imports: [
     BrowserModule,

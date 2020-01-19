@@ -1,5 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+*{
+  box-sizing: border-box;
+}
+
 body{
   background-size: cover;
   background-color: white;

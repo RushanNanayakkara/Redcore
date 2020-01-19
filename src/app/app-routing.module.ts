@@ -4,13 +4,16 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { SidemenuComponent } from './sidemenu/sidemenu.component'
 import {LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
+import { MydesignsComponent } from './mydesigns/mydesigns.component'
 
 const routes: Routes = [
   {path:'', component:LoginComponent},
   {path:'navbar', component:NavbarComponent},
   {path:'sidemenu', component:SidemenuComponent},
   {path:'register', component:RegisterComponent},
+  {path:'mydesigns', component:MydesignsComponent},
   {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
+
 ];
 
 @NgModule({

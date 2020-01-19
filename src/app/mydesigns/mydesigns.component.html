@@ -1,0 +1,38 @@
+<h2 id="mainTitle" class="ml-2 mt-2">My Designs</h2>
+<div id="recent-design-container">
+  <h5 id="recentHeading" class="mt-3">
+    Recent Designs
+  </h5>
+  <hr class="mt-1">
+  <mat-card *ngFor="let recentDesign of recentDesigns">
+    <mat-card-title>
+      {{recentDesign.title}}
+    </mat-card-title>
+    <img mat-card-image src="https://static.boredpanda.com/blog/wp-content/uploads/2014/11/creative-t-shirts-20__605.jpg" alt="" srcset="">
+    <mat-card-actions>
+      <button class="btn btn-sm btn-light"><small>Order</small></button>
+      <button class="btn btn-sm btn-light"><small>Edit</small></button>
+      <button class="btn btn-sm btn-light"><small>Delete</small></button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div id="recent-design-container">
+  <h5 id="recentHeading" class="mt-3">
+    All Designs
+  </h5>
+  <hr class="mt-1">
+  <mat-card *ngFor="let design of designs">
+    <mat-card-title>
+      {{design.title}}
+    </mat-card-title>
+    <img mat-card-image src="https://static.boredpanda.com/blog/wp-content/uploads/2014/11/creative-t-shirts-20__605.jpg" alt="" srcset="">
+    <mat-card-actions>
+      <button class="btn btn-sm btn-light"><small>Order</small></button>
+      <button class="btn btn-sm btn-light"><small>Edit</small></button>
+      <button class="btn btn-sm btn-light"><small>Delete</small></button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<button id="createNewButton" class="btn btn-danger">
+  Create New Design
+</button>
