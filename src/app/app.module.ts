@@ -18,7 +18,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
-import { MydesignsComponent } from './mydesigns/mydesigns.component'
+import { MydesignsComponent } from './mydesigns/mydesigns.component';
+import { DesignerComponent } from './designer/designer.component'
 
 
 
@@ -29,7 +30,8 @@ import { MydesignsComponent } from './mydesigns/mydesigns.component'
     SidemenuComponent,
     LoginComponent,
     RegisterComponent,
-    MydesignsComponent
+    MydesignsComponent,
+    DesignerComponent
   ],
   imports: [
     BrowserModule,
