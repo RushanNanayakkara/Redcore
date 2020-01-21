@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'sidemenu', component:SidemenuComponent},
   {path:'register', component:RegisterComponent},
   {path:'mydesigns', component:MydesignsComponent},
-  {path:'designer', component:DesignerComponent},
+  {path:'designer3D', component:DesignerComponent},
   {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
 
 ];
