@@ -19,7 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { MydesignsComponent } from './mydesigns/mydesigns.component';
-import { DesignerComponent } from './designer/designer.component'
+import { Designer2DComponent } from './designer2-d/designer2-d.component';
+import { Designer3DComponent } from './designer3-d/designer3-d.component'
 
 
 
@@ -31,7 +32,8 @@ import { DesignerComponent } from './designer/designer.component'
     LoginComponent,
     RegisterComponent,
     MydesignsComponent,
-    DesignerComponent
+    Designer2DComponent,
+    Designer3DComponent
   ],
   imports: [
     BrowserModule,

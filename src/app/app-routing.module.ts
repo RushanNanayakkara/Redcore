@@ -5,7 +5,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component'
 import {LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { MydesignsComponent } from './mydesigns/mydesigns.component'
-import { DesignerComponent } from './designer/designer.component'
+import { Designer3DComponent } from './designer3-d/designer3-d.component'
 
 const routes: Routes = [
   {path:'', component:LoginComponent},
@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'sidemenu', component:SidemenuComponent},
   {path:'register', component:RegisterComponent},
   {path:'mydesigns', component:MydesignsComponent},
-  {path:'designer3D', component:DesignerComponent},
+  {path:'designer3D', component:Designer3DComponent},
   {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
 
 ];

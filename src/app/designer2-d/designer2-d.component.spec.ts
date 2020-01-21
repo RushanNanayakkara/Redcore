@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DesignerComponent } from './designer.component';
+import { Designer2DComponent } from './designer2-d.component';
 
-describe('DesignerComponent', () => {
-  let component: DesignerComponent;
-  let fixture: ComponentFixture<DesignerComponent>;
+describe('Designer2DComponent', () => {
+  let component: Designer2DComponent;
+  let fixture: ComponentFixture<Designer2DComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DesignerComponent ]
+      declarations: [ Designer2DComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DesignerComponent);
+    fixture = TestBed.createComponent(Designer2DComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
