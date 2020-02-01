@@ -1,0 +1,23 @@
+<div class="container-fluid" id="main_container">
+  <div class="row">
+    <h3 class="display-4">
+      <small class="text-secondary ml-3">Product Gallery</small>
+    </h3>
+    <mat-form-field id="selectOption">
+      <mat-label>{{ActiveProductType}}</mat-label>
+      <mat-select (selectionChange)="SetActiveProductType($event.value)">
+        <mat-option *ngFor="let type of productTypes" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div id="productList" class="row">
+    <mat-card *ngFor="let product of activeProducts; let i = index"  (dblclick)="open(i)">
+      <mat-card-title >
+        {{product.name}}
+      </mat-card-title>
+      <img mat-card-image src={{product.photoLink}} alt="" srcset="">
+    </mat-card>
+  </div>
+</div>

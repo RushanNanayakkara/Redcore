@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Designer2DComponent } from './designer2-d.component';
+import { CustomerDashboardComponent } from './customer-dashboard.component';
 
-describe('Designer2DComponent', () => {
-  let component: Designer2DComponent;
-  let fixture: ComponentFixture<Designer2DComponent>;
+describe('CustomerDashboardComponent', () => {
+  let component: CustomerDashboardComponent;
+  let fixture: ComponentFixture<CustomerDashboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Designer2DComponent ]
+      declarations: [ CustomerDashboardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Designer2DComponent);
+    fixture = TestBed.createComponent(CustomerDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

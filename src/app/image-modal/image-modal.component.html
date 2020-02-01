@@ -1,0 +1,21 @@
+<div id="main_container" (click)="slideImage()">
+  <!-- (click)="closeModal()" code to close popup on click, add to relevent item -->
+  <div id="titlediv" class="font-weight-bold col-12"><img src="assets/img/redcore-designer-logo-white.png" class="col-3" alt="" srcset=""></div>
+  <img id="image_container" src="{{products[activeImg].photoLink}}" alt="" srcset="">
+  <div id="image_roller_container" >
+    <img id="slider-1" (click)="setActiveImage((activeImg+2)%products.length)" src="{{products[(activeImg+2)%products.length].photoLink}}" alt="" srcset="">
+    <img id="slider-2" (click)="setActiveImage((activeImg+1)%products.length)" src="{{products[(activeImg+1)%products.length].photoLink}}" alt="" srcset="">
+    <img id="slider-3" (click)="setActiveImage((activeImg)%products.length)" src="{{products[activeImg].photoLink}}" alt="" srcset="">
+    <img id="slider-4" *ngIf="products.length!=1" (click)="setActiveImage(((activeImg-1)%products.length+products.length)%products.length)" src="{{products[((activeImg-1)%products.length+products.length)%products.length].photoLink}}" alt="" srcset="">
+    <img id="slider-5" *ngIf="products.length!=2" (click)="setActiveImage(((activeImg-2)%products.length+products.length)%products.length)" src="{{products[((activeImg-2)%products.length+products.length)%products.length].photoLink}}" alt="" srcset="">
+  </div>
+  <div id="info_box" class="container-fluid">
+    <h4 class="text-light ml-1 mt-1 row">{{products[activeImg].name}}</h4>
+    <div class="text-light ml-2 mt-1 row">
+      <span class="col-6 mt-2">Owner</span><span class="col-5 d-inline-block mt-2">: {{products[activeImg].name}}</span>
+      <span class="col-6 mt-2">Date</span><span class="col-5 d-inline-block mt-2">: {{activeImg}}</span>
+      <span class="col-6 mt-2">Material</span><span class="col-5 d-inline-block mt-2">: {{products[activeImg].name}}</span>
+      <span class="col-6 mt-2">Completed In</span><span class="col-5 d-inline-block mt-2">: {{products[activeImg].name}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+$counter-icon-width : 10vw;
+$counter-width: 23vw;
+
+#place-order-button{
+  position: fixed;
+  bottom: 2vh;
+  right: 2vw;
+  width: 10vw;
+  opacity: 0.3;
+}
+
+#place-order-button:hover{
+  opacity: 1.0;
+}
+
+.ongoing-card{
+  margin-left: auto;
+  margin-top: 10vh;
+  margin-right: auto;
+  background-color: rgba($color: #ffffff9a, $alpha: 1.0);
+}
+
+#ongoing-counter{
+  width: $counter-width;
+}
+
+
+#ongoing-counter img{
+  width: $counter-icon-width;
+  background-color: rgb(255, 255, 255);
+  margin-left: 0px;
+  transform: translateY(-40%);
+  float: left;
+}
+
+
+#quotation-counter{
+  width: $counter-width*1.2;
+}
+
+
+#quotation-counter img{
+  width: $counter-icon-width;
+  background-color: rgb(255, 255, 255);
+  margin-left: 0px;
+  transform: translateY(-40%);
+  float: left;
+}
+
+#complete-counter{
+  width: $counter-width*1.2;
+}
+
+
+#complete-counter img{
+  width: $counter-icon-width;
+  background-color: rgb(255, 255, 255);
+  margin-left: 0px;
+  transform: translateY(-40%);
+  float: left;
+}
+
+.summary-row-container{
+  width: 45%;
+  min-height: 30vh;
+  background-color: rgba($color: #e0e0e0, $alpha: 1.0);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vw;
+}
+
+.summary-row-scrollable{
+  padding: 1%;
+}
+
+.summary-row-contect{
+  background-color: rgba($color: #f1f1f1, $alpha: 0.8);
+  width: 100%;
+  height: fit-content;
+}
+
+.summary-row-contect:hover{
+  scale: 1.3;
+  background-color: rgb(221, 221, 221);
+  cursor: grab;
+  -webkit-box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.1);
+}
+
+.summary-row-contect img{
+  width:3vw;
+  padding: 0.5vw;
+  float: left;
+  margin-left:2vw;
+}
+
+.summary-top-row span{
+  display: inline-block;
+  margin-left: 10%;
+  font-size: larger;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.summary-top-row span:first-child{
+}
+
+
+.summary-top-row span:nth-child(2){
+  float: right;
+  margin-right: 15%;;
+}
+
+.summary-bottom-row span{
+  display: inline-block;
+  margin-left: 10%;
+  font-size: larger;
+  color: gray;
+}
+
+
+.summary-bottom-row span:first-child{
+}
+
+
+.summary-bottom-row span:nth-child(2){
+  float: right;
+  margin-right: 15%;;
+}
+
+
+

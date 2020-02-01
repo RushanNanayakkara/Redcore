@@ -1,0 +1,10 @@
+<mat-card id="main-container">
+  <img id="main-logo" src="assets/img/logo.png" alt="" srcset="">
+  <div id="textcontainer" class="text-secondary">
+    <h2>Verify Email</h2>
+    Please enter the security code provided with the conformation email
+    <input type="text" class="col-5 form-control" name="conformation-code" id="code_text" placeholder="RC-xxxxxxx">
+    <span (click)="resendEmail()" id="resendLink">Resend email</span>
+    <button id="submit_button" (click)="verify()" class="btn btn-danger col-2">Submit</button>
+  </div>
+</mat-card>

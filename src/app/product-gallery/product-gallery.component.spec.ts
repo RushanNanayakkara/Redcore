@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Designer3DComponent } from './designer3-d.component';
+import { ProductGalleryComponent } from './product-gallery.component';
 
-describe('Designer3DComponent', () => {
-  let component: Designer3DComponent;
-  let fixture: ComponentFixture<Designer3DComponent>;
+describe('ProductGalleryComponent', () => {
+  let component: ProductGalleryComponent;
+  let fixture: ComponentFixture<ProductGalleryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Designer3DComponent ]
+      declarations: [ ProductGalleryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Designer3DComponent);
+    fixture = TestBed.createComponent(ProductGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

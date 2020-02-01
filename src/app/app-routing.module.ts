@@ -5,7 +5,12 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component'
 import {LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { MydesignsComponent } from './mydesigns/mydesigns.component'
-import { Designer3DComponent } from './designer3-d/designer3-d.component'
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { AboutComponent } from './about/about.component';
+import { ProductGalleryComponent } from './product-gallery/product-gallery.component';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+
 
 const routes: Routes = [
   {path:'', component:LoginComponent},
@@ -13,9 +18,12 @@ const routes: Routes = [
   {path:'sidemenu', component:SidemenuComponent},
   {path:'register', component:RegisterComponent},
   {path:'mydesigns', component:MydesignsComponent},
-  {path:'designer3D', component:Designer3DComponent},
+  {path:'emailverification', component:EmailVerificationComponent},
+  {path:'passwordrecovery', component:RecoverPasswordComponent},
+  {path:'about', component:AboutComponent},
+  {path:'gallery', component:ProductGalleryComponent},
+  {path:'cdash', component:CustomerDashboardComponent},
   {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
-
 ];
 
 @NgModule({

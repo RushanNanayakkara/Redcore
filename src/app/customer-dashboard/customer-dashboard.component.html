@@ -1,0 +1,72 @@
+<div id="main-container" class="container-fluid p-0">
+  <img src="assets/img/banner.jpg" class="col-12 p-0 m-0" alt="" srcset="">
+  <button id="place-order-button" class="btn btn-lg btn-danger btn-rounded animated bounce">Place order</button>
+  <div id="counter-row" class="row p-1 m-0">
+    <mat-card id="ongoing-card" class="rounded ongoing-card">
+      <mat-card-content id="ongoing-counter">
+        <img src="assets/img/pijama.png" alt="tshirt-image" srcset=""  class="rounded">
+        <span class="display-4 text-secondary float-left ml-3">Ongoing</span>
+        <span class="display-1 text-danger float-right mr-4">{{ongoing_order_count}}</span>
+      </mat-card-content>
+    </mat-card>
+    <mat-card id="complete-card" class="rounded ongoing-card">
+      <mat-card-content id="complete-counter">
+        <img src="assets/img/dash-complete.png" alt="tshirt-image" srcset="" class="rounded">
+        <span class="display-4 text-secondary float-left ml-3">Complete</span>
+        <span class="display-1 text-success float-right mr-4">{{complete_order_count}}</span>
+      </mat-card-content>
+    </mat-card>
+    <mat-card id="quotation-card" class="rounded ongoing-card">
+      <mat-card-content id="quotation-counter">
+        <img src="assets/img/dash-quotation-icon.png" alt="tshirt-image" srcset="" class="rounded">
+        <span class="display-4 text-secondary float-left ml-3">Quotations</span>
+        <span class="display-1 text-warning float-right mr-4">{{quotation_count}}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div id="summary-row" class="row m-0">
+    <div id="order-progress-container" class="summary-row-container">
+      <div class="display-4 ml-2 text-secondary">
+        <small>Order Progress</small>
+      </div>
+      <div class="summary-row-scrollable">
+        <div *ngFor="let order of orders" class="summary-row-contect rounded mt-1">
+          <img src="assets/img/sort.png" alt="" srcset="">
+          <div class="summary-top-row">
+            <span>OID: {{order.id}}</span>
+            <span [ngClass]="(order.status=='COMPLETE')?'text-success'
+                            :(order.status=='ONGOING')?'text-warning'
+                            :(order.status=='ONGOING')?'text-primary':'text-danger'">status: {{order.status}}</span>
+          </div>
+          <div class="summary-bottom-row">
+            <span>data: {{order.date}}</span>
+            <span>delivary: {{order.estimatedDelivery}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="quotation-container"  class="summary-row-container">
+      <div class="display-4 ml-2 text-secondary">
+        <small>Quotation Request Status</small>
+      </div>
+      <div class="summary-row-scrollable">
+        <div *ngFor="let quotation of quotations" class="summary-row-contect rounded mt-1">
+          <img src="assets/img/sort.png" alt="" srcset="">
+          <div class="summary-top-row">
+            <span>QID: {{quotation.id}}</span>
+            <span class="text-success"  [ngClass]="(quotation.status=='RECIEVED')?'text-success'
+            :(quotation.status=='PENDING')?'text-warning'
+            :'text-danger'">status: {{quotation.status}}</span>
+          </div>
+          <div class="summary-bottom-row">
+            <span>item: {{quotation.itemname}}</span>
+            <span>data: {{quotation.date}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="banner-row" class="row">
+
+  </div>
+</div>

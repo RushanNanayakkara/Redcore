@@ -1,0 +1,45 @@
+#main-container{
+  position: absolute;
+  width: 80vw;
+  height: 50vh;
+  left: 10vw;
+  top: 25vh;
+}
+
+#main-logo{
+  float: left;
+  width: 40vh;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
+
+#textcontainer{
+  float: left;
+  margin-left: 2vw;
+  margin-top: 15vh;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: large;
+}
+
+#code_text{
+  // margin-left: 2vw;
+  margin-top: 2vh;
+}
+
+#submit_button{
+  position: absolute;
+  bottom: 5vh;
+  right: 2vw;
+}
+
+#resendLink{
+  position: absolute;
+  bottom: 5vh;
+  color: gray;
+
+}
+
+#resendLink:hover{
+  color: red;
+  cursor: pointer;
+}

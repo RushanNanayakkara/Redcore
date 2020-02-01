@@ -12,15 +12,24 @@ import {
   MatToolbarModule,
   MatIconModule,
   MatCardModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatInputModule,
+  MatSelectModule,
+  MatGridListModule,
+  MatDividerModule,
 } from '@angular/material';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { MydesignsComponent } from './mydesigns/mydesigns.component';
-import { Designer2DComponent } from './designer2-d/designer2-d.component';
-import { Designer3DComponent } from './designer3-d/designer3-d.component'
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { AboutComponent } from './about/about.component';
+import { ProductGalleryComponent } from './product-gallery/product-gallery.component';
+import { ImageModalComponent } from './image-modal/image-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 
 
 
@@ -32,8 +41,12 @@ import { Designer3DComponent } from './designer3-d/designer3-d.component'
     LoginComponent,
     RegisterComponent,
     MydesignsComponent,
-    Designer2DComponent,
-    Designer3DComponent
+    EmailVerificationComponent,
+    RecoverPasswordComponent,
+    AboutComponent,
+    ProductGalleryComponent,
+    ImageModalComponent,
+    CustomerDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,10 +58,18 @@ import { Designer3DComponent } from './designer3-d/designer3-d.component'
     MatIconModule,
     MatCardModule,
     MatSidenavModule,
+    MatInputModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatDividerModule,
     AngularFontAwesomeModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModule
   ],
   providers: [],
+  entryComponents:[
+    ImageModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
