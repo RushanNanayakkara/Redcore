@@ -1,44 +1,44 @@
-<mat-sidenav-container *ngIf="!noTemplateRoutes.includes(this.router.url)" class="main-container">
-  <mat-sidenav mode="side" opened>
+<mat-sidenav-container class="main-container" [class.bg-white]="noTemplateRoutes.includes(this.router.url)">
+  <mat-sidenav mode="side" opened *ngIf="!noTemplateRoutes.includes(this.router.url)" >
     <div id="logo-container">
       <img id="navbar-logo" src="assets/img/redcore-designer-logo-white.png" alt="" srcset="">
     </div>
-    <div id="DashboardTab" class="navmenuitem my-auto" (click)="setActiveTab('DashboardTab')" [ngClass]="tabStatus['DashboardTab']==true? 'selected':'navmenuitem'" >
+    <div id="DashboardTab" routerLink="/cdash" class="navmenuitem my-auto" (click)="setActiveTab('DashboardTab')" [ngClass]="tabStatus['DashboardTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <i class="fa fa-home mr-2 "></i>
       Dashboard
     </div>
-    <div id="DesignerTab" class="navmenuitem" (click)="setActiveTab('DesignerTab')" [ngClass]="tabStatus['DesignerTab']==true? 'selected':'navmenuitem'" >
+    <div id="DesignerTab" routerLink="/cdash" class="navmenuitem" (click)="setActiveTab('DesignerTab')" [ngClass]="tabStatus['DesignerTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <i class="fa fa-paint-brush mr-2 "></i>
       Designer
     </div>
-    <div id="ProductGalleryTab" class="navmenuitem" (click)="setActiveTab('ProductGalleryTab')" [ngClass]="tabStatus['ProductGalleryTab']==true? 'selected':'navmenuitem'" >
+    <div id="ProductGalleryTab" routerLink="/gallery" class="navmenuitem" (click)="setActiveTab('ProductGalleryTab')" [ngClass]="tabStatus['ProductGalleryTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <i class="fa fa-envira mr-2 "></i>
       Product Gallery
     </div>
-    <div id="OrdersTab" class="navmenuitem" (click)="setActiveTab('OrdersTab')" [ngClass]="tabStatus['OrdersTab']==true? 'selected':'navmenuitem'" >
+    <div id="OrdersTab" routerLink="/cdash"  class="navmenuitem" (click)="setActiveTab('OrdersTab')" [ngClass]="tabStatus['OrdersTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <fa-icon [icon]="faCartArrowDown" class="mr-2"></fa-icon>
       Orders
     </div>
-    <div id="QuotationTab" class="navmenuitem" (click)="setActiveTab('QuotationTab')" [ngClass]="tabStatus['QuotationTab']==true? 'selected':'navmenuitem'" >
+    <div id="QuotationTab" routerLink="/quotation" class="navmenuitem" (click)="setActiveTab('QuotationTab')" [ngClass]="tabStatus['QuotationTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <fa-icon [icon]="faFileInvoiceDollar" class="mr-2"></fa-icon>
       Quotation
     </div>
-    <div id="AccountTab" class="navmenuitem" (click)="setActiveTab('AccountTab')" [ngClass]="tabStatus['AccountTab']==true? 'selected':'navmenuitem'" >
+    <div id="AccountTab"  routerLink="/cdash" class="navmenuitem" (click)="setActiveTab('AccountTab')" [ngClass]="tabStatus['AccountTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <fa-icon [icon]="faUser" class="mr-2"></fa-icon>
       Account
     </div>
-    <div id="RedcoreNetworkTab" class="navmenuitem" (click)="setActiveTab('RedcoreNetworkTab')" [ngClass]="tabStatus['RedcoreNetworkTab']==true? 'selected':'navmenuitem'" >
+    <div id="RedcoreNetworkTab" routerLink="/cdash" class="navmenuitem" (click)="setActiveTab('RedcoreNetworkTab')" [ngClass]="tabStatus['RedcoreNetworkTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <fa-icon [icon]="faNetworkWired" class="mr-2"></fa-icon>
       Redcore Network
     </div>
-    <div id="ContactUsTab" class="navmenuitem" (click)="setActiveTab('ContactUsTab')" [ngClass]="tabStatus['ContactUsTab']==true? 'selected':'navmenuitem'" >
+    <div id="ContactUsTab" routerLink="/about" class="navmenuitem" (click)="setActiveTab('ContactUsTab')" [ngClass]="tabStatus['ContactUsTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <fa-icon [icon]="faAddressCard" class="mr-2"></fa-icon>
       Contact Us
@@ -46,9 +46,8 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <app-navbar *ngIf="this.router.url != '/navbar'" ></app-navbar>
+    <app-navbar *ngIf="!noTemplateRoutes.includes(this.router.url)" ></app-navbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-<router-outlet *ngIf ="noTemplateRoutes.includes(this.router.url)"  ></router-outlet>

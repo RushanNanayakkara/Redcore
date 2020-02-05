@@ -10,10 +10,12 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
 import { AboutComponent } from './about/about.component';
 import { ProductGalleryComponent } from './product-gallery/product-gallery.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { QuotationComponent } from './quotation/quotation.component';
 
 
 const routes: Routes = [
   {path:'', component:LoginComponent},
+  {path:'login', component:LoginComponent},
   {path:'navbar', component:NavbarComponent},
   {path:'sidemenu', component:SidemenuComponent},
   {path:'register', component:RegisterComponent},
@@ -23,6 +25,7 @@ const routes: Routes = [
   {path:'about', component:AboutComponent},
   {path:'gallery', component:ProductGalleryComponent},
   {path:'cdash', component:CustomerDashboardComponent},
+  {path:'quotation', component:QuotationComponent},
   {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
 ];
 

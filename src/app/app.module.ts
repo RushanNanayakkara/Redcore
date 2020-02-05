@@ -17,6 +17,9 @@ import {
   MatSelectModule,
   MatGridListModule,
   MatDividerModule,
+  MatTableModule,
+  MatTabsModule,
+  MatCheckboxModule
 } from '@angular/material';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +33,11 @@ import { ProductGalleryComponent } from './product-gallery/product-gallery.compo
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { QuotationComponent } from './quotation/quotation.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuotationFormComponent } from './quotation-form/quotation-form.component';
+import { OrderFormComponent } from './order-form/order-form.component';
+import { QuotationTabActiveComponent } from './quotation-tab-active/quotation-tab-active.component';
 
 
 
@@ -47,6 +55,10 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
     ProductGalleryComponent,
     ImageModalComponent,
     CustomerDashboardComponent,
+    QuotationComponent,
+    QuotationFormComponent,
+    OrderFormComponent,
+    QuotationTabActiveComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,9 +74,14 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
     MatSelectModule,
     MatGridListModule,
     MatDividerModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatTableModule,
     AngularFontAwesomeModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   entryComponents:[

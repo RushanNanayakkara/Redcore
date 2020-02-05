@@ -1,0 +1,33 @@
+<img src="{{Quotation.image}}" alt="" srcset="">
+<div id="side-content-1" class="example-container">
+  <span class="display-4 mb-4">QID: {{Quotation.id}}</span>
+
+  <mat-form-field>
+    <input matInput placeholder="Status" [disabled] = "mode=='READ'" value="{{Quotation.status}}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Estimated Unit Cost" [disabled] = "mode=='READ'" value="{{Quotation.estimated_unit_cost}}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="DesignID" [disabled] = "mode=='READ'" value="{{Quotation.designID}}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Material" [disabled] = "mode=='READ'" value="{{Quotation.material}}" >
+      <mat-option value="CROCODILE">CROCODILE</mat-option>
+      <mat-option value="POLO">POLO</mat-option>
+      <mat-option value="COTTON">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Amount" [disabled] = "mode=='READ'" value="{{Quotation.amount}}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Estimated Delivery In" [disabled] = "mode=='READ'" value="{{Quotation.delivary_within}}">
+  </mat-form-field>
+
+</div>
