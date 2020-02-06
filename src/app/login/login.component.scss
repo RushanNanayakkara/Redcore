@@ -132,3 +132,16 @@ hr {
   text-align: center;
   color: gray;
 }
+
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: gray !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  background-color: gray !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+ background-color: gray !important;;
+}

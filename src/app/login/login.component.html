@@ -2,17 +2,13 @@
   <div id="logo-wrapper">
     <img src="assets/img/flatLogoNoBackground.png" alt="" id="flatlogo" class="contained">
     <form id="loginform" method="post">
-      <span id="welcome-text" class="graytext small">Welcome back! Please login to your account.</span>
-      <div class="form-item">
-          <label for="input-email">Email</label>
-          <input type="text" name="email" id="input-email">
-      </div>
-      <hr>
-      <div class="form-item"class="form-item">
-        <label for="input-password">Password</label>
-        <input type="password" name="password" id="input-password">
-      </div>
-      <hr>
+      <div id="welcome-text" class="graytext small">Welcome back! Please login to your account.</div>
+      <mat-form-field class="col-12">
+        <input id="input-username mt-2"  type="email" matInput placeholder="Email">
+      </mat-form-field>
+      <mat-form-field class="col-12 mt-2">
+        <input id="input-password"  type="password" matInput placeholder="Password">
+      </mat-form-field>
       <div>
         <input class="ml-3" type="checkbox" name="rememberme" value="remember">
         <span class="ml-1 form-footer-text">Remember me</span>

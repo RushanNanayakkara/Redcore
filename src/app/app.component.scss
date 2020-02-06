@@ -25,6 +25,7 @@ $highlightColor: rgb(46, 46, 65);
   padding-right: 20px;
   box-sizing: border-box;
   background-color: $highlightColor;
+  cursor: pointer;
 }
 
 mat-sidenav{
@@ -40,6 +41,7 @@ mat-sidenav{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, 'Arial Narrow', Arial, sans-serif, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(192, 192, 192);
   padding-left: 18px;
+  cursor: pointer;
 }
 
 .selected{

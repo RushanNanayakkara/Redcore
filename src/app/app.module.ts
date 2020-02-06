@@ -19,7 +19,8 @@ import {
   MatDividerModule,
   MatTableModule,
   MatTabsModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatRadioModule
 } from '@angular/material';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
@@ -37,7 +38,6 @@ import { QuotationComponent } from './quotation/quotation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuotationFormComponent } from './quotation-form/quotation-form.component';
 import { OrderFormComponent } from './order-form/order-form.component';
-import { QuotationTabActiveComponent } from './quotation-tab-active/quotation-tab-active.component';
 
 
 
@@ -58,7 +58,6 @@ import { QuotationTabActiveComponent } from './quotation-tab-active/quotation-ta
     QuotationComponent,
     QuotationFormComponent,
     OrderFormComponent,
-    QuotationTabActiveComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +80,8 @@ import { QuotationTabActiveComponent } from './quotation-tab-active/quotation-ta
     FontAwesomeModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule
   ],
   providers: [],
   entryComponents:[
