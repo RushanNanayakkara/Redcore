@@ -11,6 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { ProductGalleryComponent } from './product-gallery/product-gallery.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { QuotationComponent } from './quotation/quotation.component';
+import { OrderComponent } from './order/order.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,7 @@ const routes: Routes = [
   {path:'gallery', component:ProductGalleryComponent},
   {path:'cdash', component:CustomerDashboardComponent},
   {path:'quotation', component:QuotationComponent},
-  {path:'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'}
+  {path:'order', component:OrderComponent},
 ];
 
 @NgModule({

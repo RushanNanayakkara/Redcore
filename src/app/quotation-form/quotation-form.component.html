@@ -1,13 +1,13 @@
-<img src="{{Quotation.image}}" alt="" srcset="">
+<img src="{{Quotation.image}}" class="col-5" alt="" srcset="">
 <div id="side-content-1" class="example-container">
   <span class="display-4 mb-4">QID: {{Quotation.id}}</span>
 
   <mat-form-field>
-    <input matInput placeholder="Status" [disabled] = "mode=='READ'" value="{{Quotation.status}}">
+    <input matInput placeholder="CustomerID" [disabled] = "mode=='READ'" value="{{Quotation.customerID}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Estimated Unit Cost" [disabled] = "mode=='READ'" value="{{Quotation.estimated_unit_cost}}">
+    <input matInput placeholder="Name" [disabled] = "mode=='READ'" value="{{Quotation.name}}">
   </mat-form-field>
 
   <mat-form-field>
@@ -15,19 +15,31 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Material" [disabled] = "mode=='READ'" value="{{Quotation.material}}" >
-      <mat-option value="CROCODILE">CROCODILE</mat-option>
-      <mat-option value="POLO">POLO</mat-option>
-      <mat-option value="COTTON">Option</mat-option>
-    </mat-select>
+    <input matInput placeholder="Request Date" [disabled] = "mode=='READ'" value="{{Quotation.requestDate}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Amount" [disabled] = "mode=='READ'" value="{{Quotation.amount}}">
+    <input matInput placeholder="IssuedDate" [disabled] = "mode=='READ'" value="{{Quotation.issuedDate}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Estimated Delivery In" [disabled] = "mode=='READ'" value="{{Quotation.delivary_within}}">
+    <input matInput placeholder="Valid Period" [disabled] = "mode=='READ'" value="{{Quotation.validPeriod}}">
   </mat-form-field>
 
+  <h5 class="text-secondary">Estimated Unit Costs</h5>
+  <mat-form-field>
+    <input matInput placeholder="100-300 units" [disabled] = "mode=='READ'" value="{{Quotation.price100_300}}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="301-500 units" [disabled] = "mode=='READ'" value="{{Quotation.price300_500}}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="501-1000 units" [disabled] = "mode=='READ'" value="{{Quotation.price500_1000}}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Above 1000 units" [disabled] = "mode=='READ'" value="{{Quotation.priceAbove1000}}">
+  </mat-form-field>
 </div>

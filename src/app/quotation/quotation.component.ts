@@ -18,44 +18,53 @@ export class QuotationComponent implements OnInit {
   Quotations = [
     {
       id: "Q001",
+      customerID: "C001",
       name: "my quotation 1",
-      date:"01-02-2020",
+      requestDate:"01-02-2020",
+      issuedDate:"01-02-2020",
+      validPeriod:90,
       status: "PENDING",
-      estimated_unit_cost: "1000",
-          designID: "D001",
-          material: "CROCODILE",
-          amount: "100",
-          delivary_within: "10",
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        },
-        {
-          id: "Q002",
-          name: "my quotation 2",
-          date:"02-02-2020",
-          status: "PENDING",
-          estimated_unit_cost: "1000",
-          designID: "D001",
-          material: "CROCODILE",
-          amount: "100",
-          delivary_within: "10",
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        },
-        {
-          id: "Q003",
-          name: "my quotation 3",
-          date:"03-02-2020",
-          status: "PENDING",
-          estimated_unit_cost: "1000",
-          designID: "D001",
-          material: "CROCODILE",
-          amount: "100",
-          delivary_within: "10",
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        },
-      ];
+      designID: "D001",
+      price100_300: 800,
+      price300_500: 700,
+      price500_1000: 600,
+      priceAbove1000: 500,
+      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+    },
+    {
+      id: "Q002",
+      customerID: "C001",
+      name: "my quotation 1",
+      requestDate:"01-02-2020",
+      issuedDate:"01-02-2020",
+      validPeriod:90,
+      status: "PENDING",
+      designID: "D001",
+      price100_300: 800,
+      price300_500: 700,
+      price500_1000: 600,
+      priceAbove1000: 500,
+      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+    },
+    {
+      id: "Q003",
+      customerID: "C001",
+      name: "my quotation 1",
+      requestDate:"01-02-2020",
+      issuedDate:"01-02-2020",
+      validPeriod:90,
+      status: "PENDING",
+      designID: "D001",
+      price100_300: 800,
+      price300_500: 700,
+      price500_1000: 600,
+      priceAbove1000: 500,
+      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+    },
+  ];
 
 
-    displayedColumns = ["ID","Name","Date","Status"];
+    displayedColumns = ["ID","Name","IssuedDate", "RequestDate", "Status"];
 
     radioChange(event: MatRadioChange) {
       //enter get all and get active codes here
@@ -74,16 +83,34 @@ export class QuotationComponent implements OnInit {
       this.Quotations = [
         {
           id: "Q001",
-          name: "my quotation 1",
-          date:"01-02-2020",
+          customerID: "C001",
+          name: "Search 1",
+          requestDate:"01-02-2020",
+          issuedDate:"01-02-2020",
+          validPeriod:90,
           status: "PENDING",
-          estimated_unit_cost: "1000",
           designID: "D001",
-          material: "CROCODILE",
-          amount: "100",
-          delivary_within: "10",
+          price100_300: 800,
+          price300_500: 700,
+          price500_1000: 600,
+          priceAbove1000: 500,
           image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        }
+        },
+        {
+          id: "Q001",
+          customerID: "C001",
+          name: "Search 2",
+          requestDate:"01-02-2020",
+          issuedDate:"01-02-2020",
+          validPeriod:90,
+          status: "PENDING",
+          designID: "D001",
+          price100_300: 800,
+          price300_500: 700,
+          price500_1000: 600,
+          priceAbove1000: 500,
+          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+        },
       ];
     }
 
@@ -98,7 +125,21 @@ export class QuotationComponent implements OnInit {
         fixed: false,
         top: 0
       });
-      this.activeQuotation = JSON.stringify(this.Quotations[0]);
+      this.activeQuotation = {
+        id: "Q001",
+        customerID: "C001",
+        name: "my quotation 1",
+        requestDate:"01-02-2020",
+        issuedDate:"01-02-2020",
+        validPeriod:90,
+        status: "PENDING",
+        designID: "D001",
+        price100_300: 800,
+        price300_500: 700,
+        price500_1000: 600,
+        priceAbove1000: 500,
+        image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+      }
      }
 
     ngOnInit() {

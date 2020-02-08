@@ -38,6 +38,7 @@ import { QuotationComponent } from './quotation/quotation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuotationFormComponent } from './quotation-form/quotation-form.component';
 import { OrderFormComponent } from './order-form/order-form.component';
+import { OrderComponent } from './order/order.component';
 
 
 
@@ -58,6 +59,7 @@ import { OrderFormComponent } from './order-form/order-form.component';
     QuotationComponent,
     QuotationFormComponent,
     OrderFormComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
