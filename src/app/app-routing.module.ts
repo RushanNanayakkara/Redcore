@@ -12,6 +12,7 @@ import { ProductGalleryComponent } from './product-gallery/product-gallery.compo
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { QuotationComponent } from './quotation/quotation.component';
 import { OrderComponent } from './order/order.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'about', component:AboutComponent},
   {path:'gallery', component:ProductGalleryComponent},
   {path:'cdash', component:CustomerDashboardComponent},
+  {path:'adash', component:AdminDashboardComponent},
   {path:'quotation', component:QuotationComponent},
   {path:'order', component:OrderComponent},
 ];

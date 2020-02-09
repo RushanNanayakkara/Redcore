@@ -1,0 +1,42 @@
+#chartComponent{
+
+}
+
+#ongoingIcon{
+  position: relative;
+  height: 50%;
+}
+
+.summaryContainer{
+  height: 250px;
+}
+
+#summaryRow{
+  box-sizing: border-box;
+}
+
+#redcoreNetworkRow *{
+  font-size: medium;
+}
+
+
+#notificationRow *{
+  font-size: medium;
+}
+
+#redcoreNetworkSummaryHeading{
+  font-size: 30px;
+}
+
+#notificationRowHeading{
+  font-size: 30px;
+}
+
+#notification-left-panel button:hover{
+  color:red;
+}
+
+#notification-left-panel{
+  max-height: 50vh;
+  overflow: scroll;
+}

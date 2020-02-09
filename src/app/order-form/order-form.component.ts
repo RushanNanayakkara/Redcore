@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-order-form',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderFormComponent implements OnInit {
 
-  constructor() { }
+  @Input() mode;
+  @Input() Quotation;
+
+  constructor() {
+
+  }
 
   ngOnInit() {
+
   }
 
 }

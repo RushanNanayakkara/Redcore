@@ -1,0 +1,16 @@
+.example-container {
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+img{
+  float: right;
+  padding: 0px;
+  margin-top: 50%;
+  transform: translateY(-50%);
+}

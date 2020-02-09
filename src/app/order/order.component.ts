@@ -1,15 +1,149 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import { MatRadioChange } from '@angular/material';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
+
 export class OrderComponent implements OnInit {
+  options: FormGroup;
+  opened: boolean;
+  activeQuotation;
 
-  constructor() { }
+  viewAll: boolean;
 
-  ngOnInit() {
-  }
+  Quotations = [
+    {
+      id: "Q001",
+      customerID: "C001",
+      name: "my quotation 1",
+      requestDate:"01-02-2020",
+      issuedDate:"01-02-2020",
+      validPeriod:90,
+      status: "PENDING",
+      designID: "D001",
+      price100_300: 800,
+      price300_500: 700,
+      price500_1000: 600,
+      priceAbove1000: 500,
+      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+    },
+    {
+      id: "Q002",
+      customerID: "C001",
+      name: "my quotation 1",
+      requestDate:"01-02-2020",
+      issuedDate:"01-02-2020",
+      validPeriod:90,
+      status: "PENDING",
+      designID: "D001",
+      price100_300: 800,
+      price300_500: 700,
+      price500_1000: 600,
+      priceAbove1000: 500,
+      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+    },
+    {
+      id: "Q003",
+      customerID: "C001",
+      name: "my quotation 1",
+      requestDate:"01-02-2020",
+      issuedDate:"01-02-2020",
+      validPeriod:90,
+      status: "PENDING",
+      designID: "D001",
+      price100_300: 800,
+      price300_500: 700,
+      price500_1000: 600,
+      priceAbove1000: 500,
+      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+    },
+  ];
+
+
+    displayedColumns = ["ID","Name","RequestDate", "Status"];
+
+    radioChange(event: MatRadioChange) {
+      //enter get all and get active codes here
+      //might have to implement these functions in the server side
+      if(event.source.value=='ALL'){
+        //enter get all code here
+        console.log("All selected");
+      }else if(event.source.value=="ACTIVE"){
+        //enter get active code here
+        console.log("ACTIVE selected");
+      }
+    }
+
+    search(){
+      //enter search code here
+      this.Quotations = [
+        {
+          id: "Q001",
+          customerID: "C001",
+          name: "Search 1",
+          requestDate:"01-02-2020",
+          issuedDate:"01-02-2020",
+          validPeriod:90,
+          status: "PENDING",
+          designID: "D001",
+          price100_300: 800,
+          price300_500: 700,
+          price500_1000: 600,
+          priceAbove1000: 500,
+          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+        },
+        {
+          id: "Q001",
+          customerID: "C001",
+          name: "Search 2",
+          requestDate:"01-02-2020",
+          issuedDate:"01-02-2020",
+          validPeriod:90,
+          status: "PENDING",
+          designID: "D001",
+          price100_300: 800,
+          price300_500: 700,
+          price500_1000: 600,
+          priceAbove1000: 500,
+          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+        },
+      ];
+    }
+
+    tableDblClickAction(row){
+      this.opened = true;
+      this.activeQuotation = row;
+    }
+
+    constructor(fb: FormBuilder) {
+      this.options = fb.group({
+        bottom: 0,
+        fixed: false,
+        top: 0
+      });
+      this.activeQuotation = {
+        id: "Q001",
+        customerID: "C001",
+        name: "my quotation 1",
+        requestDate:"01-02-2020",
+        issuedDate:"01-02-2020",
+        validPeriod:90,
+        status: "PENDING",
+        designID: "D001",
+        price100_300: 800,
+        price300_500: 700,
+        price500_1000: 600,
+        priceAbove1000: 500,
+        image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+      }
+     }
+
+    ngOnInit() {
+      this.viewAll = false;
+    }
 
 }

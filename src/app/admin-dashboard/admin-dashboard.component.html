@@ -1,0 +1,253 @@
+<div class="display-4 ml-4 mt-2 text-secondary font-weight-bold"> <span class="text-danger">Dash</span>board</div>
+<hr>
+<!--REVENUE CHART -->
+<div class="text-secondary ml-4 mt-2 text-left font-weight-bold" style="font-size: larger;">Revenue summary for last 12 months</div>
+<div class="col-10 mr-auto ml-auto">
+  <app-linechart
+    id="chartComponent"
+    [lineChartLabels] = 'chartMonths'
+    [data]='chartData'
+    [type]="chartType"
+  ></app-linechart>
+</div>
+
+<!-- SUMMARY DATA ROW -->
+<div id="summaryRow" class="mt-4 row">
+  <!-- ONGOING ORDERS COUNT -->
+  <div class="col-4 bg-white ml-1 summaryContainer row p-3" style="height: 100%;">
+    <img id="ongoingIcon" class="col-4 p-3 d-inline" src="assets/img/adashOngoing.png" alt="" srcset="">
+    <div class="col-8 mt-2 d-inline">
+      <div class="col-12 text-primary text-center font-weight-bold" style="font-size: xx-large;">Ongoing Orders</div>
+      <div class="col-12 text-primary text-center"><h4 style="font-size: 100px;">{{OngoingCount}}</h4></div>
+    </div>
+  </div>
+  <!-- LATE ORDERS COUNT -->
+  <div class="col-4 bg-white ml-1 summaryContainer row p-3" style="height: 100%;">
+    <img id="ongoingIcon" class="col-4 p-3 d-inline" src="assets/img/adashLate.png" alt="" srcset="">
+    <div class="col-8 mt-2 d-inline">
+      <div class="col-12 text-danger text-center font-weight-bold" style="font-size: xx-large;">Late Orders</div>
+      <div class="col-12 text-danger text-center"><h4 style="font-size: 100px;">{{LateOrders}}</h4></div>
+    </div>
+  </div>
+  <!-- QUOTATION COUNT  -->
+  <div class="col-4 bg-white ml-1 summaryContainer row p-3" style="height: 100%;">
+    <img id="ongoingIcon" class="col-4 p-3 d-inline" src="assets/img/adashQuotation.png" alt="" srcset="">
+    <div class="col-8 mt-2 d-inline">
+      <div class="col-12 text-warning text-center font-weight-bold" style="font-size: xx-large;">Quotation Count</div>
+      <div class="col-12 text-warning text-center"><h4 style="font-size: 100px;">{{QuotationReqCount}}</h4></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row mt-3 bg-white" id="summaryRow">
+  <!-- ONGOING ORDERS TABLE -->
+  <div class="col-4 bg-white row ml-2 p-2" style="height: fit-content;">
+    <h3 class="d-block text-center ml-3 col-6">Ongoing Orders</h3>
+    <button class="btn btn-dark ml-auto mr-3 col-3" routerLink="/order">Open Orders</button>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-2 col-11 ml-auto mr-auto">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+  <!-- LATE ORDERS TABLE -->
+  <div class="col-4 bg-white row p-2" style="height: fit-content;">
+    <h3 class="d-block text-center ml-3">Late Orders</h3>
+    <button class="btn btn-dark ml-auto mr-3 col-3" routerLink="/order">Open Orders</button>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-2 col-11 ml-auto mr-auto">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+  <!-- QUOTATION REQUESTS TABLE -->
+  <div class="col-4 bg-white row p-2" style="height: fit-content;">
+    <h3 class="d-block text-center">Quotation Requests</h3>
+    <button class="btn btn-dark ml-auto mr-3 col-4" routerLink="/quotation">Open Quotations</button>
+    <table mat-table [dataSource]="QuotationRequests" class="mat-elevation-z8 mt-2 col-11 ml-auto mr-auto">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="ID">
+          <th mat-header-cell *matHeaderCellDef> ID. </th>
+          <td mat-cell *matCellDef="let quotation"> {{quotation.id}} </td>
+        </ng-container>
+
+        <!-- CustomerID Column -->
+        <ng-container matColumnDef="CustomerID">
+          <th mat-header-cell *matHeaderCellDef> CustomerID </th>
+          <td mat-cell *matCellDef="let quotation"> {{quotation.customerID}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let quotation"> {{quotation.name}} </td>
+        </ng-container>
+
+        <!-- Request Date Column -->
+        <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let quotation"> {{quotation.requestDate}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="QuotationTableDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: QuotationTableDisplayedColumns;"></tr>
+      </table>
+  </div>
+</div>
+<!-- REDCORE NETWORK SUMMARY -->
+<div class="row" id="redcoreNetworkRow">
+  <mat-expansion-panel expanded class="col-12 mt-3 p-1">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4 id="redcoreNetworkSummaryHeading">Redcore Network Summary</h4>
+      </mat-panel-title>
+      <mat-panel-description>
+        click to toggle
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <table mat-table [dataSource]="redcoreNetworkTableData" class="mat-elevation-z8 mt-2 col-11 ml-auto mr-auto p-4">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="ID">
+        <th mat-header-cell *matHeaderCellDef> ID. </th>
+        <td mat-cell *matCellDef="let garment"> {{garment.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let garment"> {{garment.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Ongoing">
+        <th mat-header-cell *matHeaderCellDef> Ongoing </th>
+        <td mat-cell *matCellDef="let garment"> {{garment.ongoingCount}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Due this week">
+        <th mat-header-cell *matHeaderCellDef> Due this week </th>
+        <td mat-cell *matCellDef="let garment"> {{garment.dueSoonCount}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Late">
+        <th mat-header-cell *matHeaderCellDef> Late </th>
+        <td mat-cell *matCellDef="let garment"> {{garment.lateCount}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let garment"> {{garment.status}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="redcoreNetworkTableDisplayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: redcoreNetworkTableDisplayColumns;"></tr>
+    </table>
+
+
+  </mat-expansion-panel>
+</div>
+<!-- NOTIFICATION MANAGEMENT -->
+<div class="row"  id="notificationRow">
+  <mat-expansion-panel expanded class="col-12 mt-3 p-1">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4 id="notificationRowHeading">Notification Management</h4>
+      </mat-panel-title>
+      <mat-panel-description>
+        click to toggle
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div id="notificationContainer" class="row">
+       <div class="col-6 bg-white" id="notification-left-panel">
+        <h5 class="d-block p-2">Recent Notifications</h5>
+        <mat-list role="list">
+          <mat-list-item *ngFor="let Notification of Notifications" role="listitem" style="height: fit-content;">
+            <div class="bg-light p-2 col-11 ml-auto mr-auto">
+              <div class="mt-1 "><h4>{{Notification.title}}</h4></div>
+              <div class="mt-1 text-secondary">{{Notification.body}}</div>
+              <button mat-button class="float-right p-2 mt-auto mb-auto" (click)="removeNotification(Notification.id)">Remove</button>
+            </div>
+            <hr>
+          </mat-list-item>
+        </mat-list>
+       </div>
+       <div class="col-6 b-light" id="notification-right-panel">
+        <h5 class="d-block p-2">Add New Notification</h5>
+        <mat-form-field class="col-8">
+          <mat-label>Notification Title</mat-label>
+          <input #inputNotificationTitle matInput placeholder="Notification Title" value="">
+        </mat-form-field>
+        <mat-form-field class="col-5">
+          <mat-label>Target</mat-label>
+          <mat-select #notificationTarget>
+            <mat-option *ngFor="let target of ['GARMENT','CUSTOMER','ALL']" [value]="target">
+              {{target}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-10 ml-auto mr-auto">
+          <mat-label>Enter notification body</mat-label>
+          <textarea #inputNotificationBody matInput placeholder="Enter multiline notification here"></textarea>
+        </mat-form-field>
+        <button class="col-3 btn btn-danger float-right mr-2" (click)="addNotificaton(inputNotificationTitle.value,inputNotificationBody.value,notificationTarget.value)">Publish</button>
+       </div>
+    </div>
+  </mat-expansion-panel>
+</div>
+

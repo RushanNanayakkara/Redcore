@@ -3,12 +3,12 @@
     <div id="logo-container" routerLink="/cdash">
       <img id="navbar-logo" src="assets/img/redcore-designer-logo-white.png" alt="" srcset="">
     </div>
-    <div id="DashboardTab" routerLink="/cdash" class="navmenuitem my-auto" (click)="setActiveTab('DashboardTab')" [ngClass]="tabStatus['DashboardTab']==true? 'selected':'navmenuitem'" >
+    <div id="DashboardTab" routerLink="/adash" class="navmenuitem my-auto" (click)="setActiveTab('DashboardTab')" [ngClass]="tabStatus['DashboardTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <i class="fa fa-home mr-2 "></i>
       Dashboard
     </div>
-    <div id="DesignerTab" class="navmenuitem" (click)="setActiveTab('DesignerTab')" [ngClass]="tabStatus['DesignerTab']==true? 'selected':'navmenuitem'" >
+    <div id="DesignerTab" class="navmenuitem" routerLink="/mydesigns" (click)="setActiveTab('DesignerTab')" [ngClass]="tabStatus['DesignerTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <i class="fa fa-paint-brush mr-2 "></i>
       Designer

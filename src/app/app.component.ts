@@ -35,16 +35,16 @@ export class AppComponent {
     '/emailverification',
     '/passwordrecovery'
   ]
-  designerURL = 'http://localhost:8080/';
+  // designerURL = 'http://localhost:8080/';
 
   constructor(private router:Router){
 
   }
 
   setActiveTab(tabId) {
-    if(tabId=='DesignerTab'){
-      window.location.href = this.designerURL;
-    }
+    // if(tabId=='DesignerTab'){
+    //   window.location.href = this.designerURL;
+    // }
     this.tabStatus[this.prevTab] = false;
     this.tabStatus[tabId] = true;
     this.prevTab = tabId;

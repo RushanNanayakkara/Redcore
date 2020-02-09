@@ -1,1 +1,54 @@
-<p>order works!</p>
+<mat-sidenav-container class="example-container col-12">
+  <mat-sidenav  #sidenav mode="side" [(opened)]="opened" class="example-sidenav col-6"
+               [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
+               [fixedBottomGap]="options.value.bottom" position="end">
+               <button mat-button (click)="sidenav.toggle()" class="float-right btn-danger m-2">X</button>
+               <button mat-button (click)="sidenav.toggle()" id="btn_place_order" class="btn p-2 float-right text-white btn-danger m-2">Place Order</button>
+               <app-quotation-form mode="READ" [Quotation]="activeQuotation"></app-quotation-form>
+  </mat-sidenav>
+
+  <mat-sidenav-content id="main-content-1" [formGroup]="options" class="mt-4">
+
+    <div><h2 class="text-secondary">Order Manager</h2></div>
+    <div class="col-12">
+      <mat-form-field class="col-2 float-right">
+        <input id="input-search"  type="text" matInput placeholder="Search by ID" (keyup.enter)="search()">
+      </mat-form-field>
+      <mat-radio-group aria-label="Select an option" class="text-secondary">
+        <mat-radio-button (change)="radioChange($event)" value="ACTIVE" class="ml-2" checked>Active</mat-radio-button>
+        <mat-radio-button (change)="radioChange($event)" value="ALL" class="ml-4">All</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <table mat-table [dataSource]="Quotations" class="mat-elevation-z8 col-12">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="ID">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let Quotation" class="font-weight-bold"> {{Quotation.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let Quotation"> {{Quotation.name}} </td>
+      </ng-container>
+
+      <!-- Request Date Column -->
+      <ng-container matColumnDef="RequestDate">
+        <th mat-header-cell *matHeaderCellDef> Request Date </th>
+        <td mat-cell *matCellDef="let Quotation"> {{Quotation.requestDate}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let Quotation" class="text-warning"> {{Quotation.status}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="tableDblClickAction(row)" style="cursor: pointer;"></tr>
+    </table>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

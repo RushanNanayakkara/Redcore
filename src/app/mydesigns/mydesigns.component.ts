@@ -22,10 +22,16 @@ export class MydesignsComponent implements OnInit {
 
   ]
 
+  designerURL = 'http://localhost:8080/';
+
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  redirectToDesigner(){
+    window.location.href = this.designerURL;
   }
 
 }

@@ -39,7 +39,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuotationFormComponent } from './quotation-form/quotation-form.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderComponent } from './order/order.component';
-
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ChartsModule } from 'ng2-charts';
+import { LinechartComponent } from './linechart/linechart.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { FooterComponent } from './footer/footer.component';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -60,6 +66,9 @@ import { OrderComponent } from './order/order.component';
     QuotationFormComponent,
     OrderFormComponent,
     OrderComponent,
+    AdminDashboardComponent,
+    LinechartComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,12 +87,16 @@ import { OrderComponent } from './order/order.component';
     MatCheckboxModule,
     MatTabsModule,
     MatTableModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatListModule,
     AngularFontAwesomeModule,
     FontAwesomeModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    ChartsModule
   ],
   providers: [],
   entryComponents:[
