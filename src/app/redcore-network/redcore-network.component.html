@@ -1,0 +1,47 @@
+<div class="display-4 col-12"><span class="text-danger">Red</span>Core Network</div>
+<div #map style="width:100%;height:40vh"></div>
+<div class="row">
+  <div class="col-12 p-2 ml-3 mr-auto row bg-white mt-3 rounded">
+    <div class="col-12">
+      <span class="text-danger font-weight-bold">Network Status</span>
+    </div>
+    <div class="col-6 p-1 container">
+      <div class="row pl-4">
+        <span class="col-3">Registered Nodes</span>: {{NodeCount}}
+      </div>
+      <div class="row pl-4">
+        <span class="col-3">Active Nodes </span>: {{ActiveCount}}
+      </div>
+      <div class="row pl-4">
+        <span class="col-3">Idle Nodes </span>: {{IdleCount}}
+      </div>
+    </div>
+    <div class="col-6 p-1 container">
+      <div class="row pl-4">
+        <span class="col-3">Total Orders </span>: {{NodeCount}}
+      </div>
+      <div class="row pl-4">
+        <span class="col-3">Orders Per Node </span>: {{ActiveCount}}
+      </div>
+      <div class="row pl-4">
+        <span class="col-3">Revenue Per Node </span>: {{IdleCount}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div  class="bg-light">
+  <h1 class="ml-3 mt-3"><span class="text-danger">Red</span>core Nodes</h1>
+  <div id="nodeList" class="row">
+    <mat-card class="ml-5 mt-2 garmentCard" *ngFor="let node of Nodes; let i = index"  (dblclick)="open(i)">
+      <mat-card-title class="text-secondary" >
+        {{node.name}}
+      </mat-card-title>
+      <img mat-card-image src={{node.imageURL}} alt="" srcset="">
+    </mat-card>
+  </div>
+</div>
+
+<button id="btn-place-order" class="btn btm-lg rounded btn-danger">
+  Add New Node
+</button>

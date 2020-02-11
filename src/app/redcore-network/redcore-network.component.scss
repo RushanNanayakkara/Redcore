@@ -1,0 +1,24 @@
+.garmentCard{
+  width: 15vw;
+}
+
+.garmentCard:hover{
+  -webkit-box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.75);
+}
+
+#btn-place-order{
+  position: fixed;
+  bottom: 2vh;
+  right: 3vw;
+  opacity: 0.3;
+}
+
+
+#btn-place-order:hover{
+  -webkit-box-shadow: 0px 0px 17px 3px rgba(194,41,54,1);
+-moz-box-shadow: 0px 0px 17px 3px rgba(194,41,54,1);
+box-shadow: 0px 0px 17px 3px rgba(194,41,54,1);
+  opacity: 1;
+}

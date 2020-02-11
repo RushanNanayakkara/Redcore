@@ -8,10 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OrderFormComponent implements OnInit {
 
   @Input() mode;
-  @Input() Quotation;
+  @Input() Order;
+
+  OrderImageURL = "https://images-na.ssl-images-amazon.com/images/I/71iedC2D5tL._UX569_.jpg";
 
   constructor() {
-
+    this.Order = {}
   }
 
   ngOnInit() {
