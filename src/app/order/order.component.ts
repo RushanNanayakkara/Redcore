@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { MatRadioChange } from '@angular/material';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { OrderFormComponent } from '../order-form/order-form.component'
 
 @Component({
   selector: 'app-order',
@@ -11,60 +13,30 @@ import { MatRadioChange } from '@angular/material';
 export class OrderComponent implements OnInit {
   options: FormGroup;
   opened: boolean;
-  activeQuotation;
+  activeOrder;
 
   viewAll: boolean;
 
-  Quotations = [
+  Orders = [
     {
-      id: "Q001",
-      customerID: "C001",
-      name: "my quotation 1",
-      requestDate:"01-02-2020",
-      issuedDate:"01-02-2020",
-      validPeriod:90,
-      status: "PENDING",
-      designID: "D001",
-      price100_300: 800,
-      price300_500: 700,
-      price500_1000: 600,
-      priceAbove1000: 500,
-      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-    },
-    {
-      id: "Q002",
-      customerID: "C001",
-      name: "my quotation 1",
-      requestDate:"01-02-2020",
-      issuedDate:"01-02-2020",
-      validPeriod:90,
-      status: "PENDING",
-      designID: "D001",
-      price100_300: 800,
-      price300_500: 700,
-      price500_1000: 600,
-      priceAbove1000: 500,
-      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-    },
-    {
-      id: "Q003",
-      customerID: "C001",
-      name: "my quotation 1",
-      requestDate:"01-02-2020",
-      issuedDate:"01-02-2020",
-      validPeriod:90,
-      status: "PENDING",
-      designID: "D001",
-      price100_300: 800,
-      price300_500: 700,
-      price500_1000: 600,
-      priceAbove1000: 500,
-      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-    },
-  ];
+      id:"O001",
+      name:"Order 1",
+      customerID:"C001",
+      garmentID:"G001",
+      designID:"D001",
+      quotationID:"Q001",
+      amount:100,
+      price:100000,
+      paid:35000,
+      placedDate:"06-08-2020",
+      dueDate:"08-08-2020",
+      status:"ONGOING"
+    }
+  ]
 
+  displayedColumns = ["ID","Name","CustomerID","GarmentID","Due Date","Status"];
 
-    displayedColumns = ["ID","Name","RequestDate", "Status"];
+    // displayedColumns = ["ID","Name","RequestDate", "Status"];
 
     radioChange(event: MatRadioChange) {
       //enter get all and get active codes here
@@ -80,65 +52,48 @@ export class OrderComponent implements OnInit {
 
     search(){
       //enter search code here
-      this.Quotations = [
-        {
-          id: "Q001",
-          customerID: "C001",
-          name: "Search 1",
-          requestDate:"01-02-2020",
-          issuedDate:"01-02-2020",
-          validPeriod:90,
-          status: "PENDING",
-          designID: "D001",
-          price100_300: 800,
-          price300_500: 700,
-          price500_1000: 600,
-          priceAbove1000: 500,
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        },
-        {
-          id: "Q001",
-          customerID: "C001",
-          name: "Search 2",
-          requestDate:"01-02-2020",
-          issuedDate:"01-02-2020",
-          validPeriod:90,
-          status: "PENDING",
-          designID: "D001",
-          price100_300: 800,
-          price300_500: 700,
-          price500_1000: 600,
-          priceAbove1000: 500,
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        },
-      ];
+      //update the orders list
+    }
+
+    getActiveOrderImageURL(designID){
+      //get image url from the designID
+      //alternatively can use the quotation api to get the quotation
+      //and then get the image url from that
     }
 
     tableDblClickAction(row){
       this.opened = true;
-      this.activeQuotation = row;
+      this.activeOrder = row;
+      this.getActiveOrderImageURL(row.designID);
     }
 
-    constructor(fb: FormBuilder) {
+    open(index) {
+      const modalRef = this.modalService.open(OrderFormComponent,{ size: 'xl', backdrop: 'static' });
+      modalRef.componentInstance.mode = "INPUT";
+      modalRef.componentInstance.modalRef = modalRef;
+      modalRef.componentInstance.activeImg = index;
+    }
+
+    constructor(fb: FormBuilder,private modalService:NgbModal) {
       this.options = fb.group({
         bottom: 0,
         fixed: false,
         top: 0
       });
-      this.activeQuotation = {
-        id: "Q001",
-        customerID: "C001",
-        name: "my quotation 1",
-        requestDate:"01-02-2020",
-        issuedDate:"01-02-2020",
-        validPeriod:90,
-        status: "PENDING",
-        designID: "D001",
-        price100_300: 800,
-        price300_500: 700,
-        price500_1000: 600,
-        priceAbove1000: 500,
-        image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+      this.activeOrder =
+      {
+        id:"O001",
+        name:"Order 1",
+        customerID:"C001",
+        garmentID:"G001",
+        designID:"D001",
+        quotationID:"Q001",
+        amount:100,
+        price:100000,
+        paid:35000,
+        placedDate:"06-08-2020",
+        dueDate:"08-08-2020",
+        status:"ONGOING"
       }
      }
 

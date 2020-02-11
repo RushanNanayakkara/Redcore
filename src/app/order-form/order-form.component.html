@@ -1,45 +1,48 @@
-<img src="{{Quotation.image}}" class="col-5" alt="" srcset="">
-<div id="side-content-1" class="example-container">
-  <span class="display-4 mb-4">QID: {{Quotation.id}}</span>
+<img src="{{OrderImageURL}}" *ngIf="mode=='READ'" class="col-6 ml-auto mr-auto" alt="" srcset="">
+<div id="side-content-1" class="example-container" [class.inputMode]="mode=='INPUT'">
+  <span class="display-4 mb-4">{{Order.name}}</span>
 
-  <mat-form-field>
-    <input matInput placeholder="CustomerID" [disabled] = "mode=='READ'" value="{{Quotation.customerID}}">
+  <mat-form-field *ngIf="mode=='READ'">
+    <input matInput placeholder="OrderID" [disabled] = "mode=='READ'" value="{{Order.id}}">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="mode=='READ'">
+    <input matInput placeholder="Status" [disabled] = "mode=='READ'" value="{{Order.status}}">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="mode=='READ'">
+    <input matInput placeholder="CustomerID" [disabled] = "mode=='READ'" value="{{Order.customerID}}">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="mode=='READ'">
+    <input matInput placeholder="GarmentID" [disabled] = "mode=='READ'" value="{{Order.garmentID}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Name" [disabled] = "mode=='READ'" value="{{Quotation.name}}">
+    <input matInput placeholder="QuotationID" [disabled] = "mode=='READ'" value="{{Order.quotationID}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="DesignID" [disabled] = "mode=='READ'" value="{{Quotation.designID}}">
+    <input matInput placeholder="DesignID" [disabled] = "mode=='READ'" value="{{Order.designID}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Request Date" [disabled] = "mode=='READ'" value="{{Quotation.requestDate}}">
+    <input matInput placeholder="Amount" [disabled] = "mode=='READ'" value="{{Order.amount}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="IssuedDate" [disabled] = "mode=='READ'" value="{{Quotation.issuedDate}}">
+    <input matInput placeholder="Price" [disabled] = "mode=='READ'" value="{{Order.price}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Valid Period" [disabled] = "mode=='READ'" value="{{Quotation.validPeriod}}">
-  </mat-form-field>
-
-  <h5 class="text-secondary">Estimated Unit Costs</h5>
-  <mat-form-field>
-    <input matInput placeholder="100-300 units" [disabled] = "mode=='READ'" value="{{Quotation.price100_300}}">
+    <input matInput placeholder="Paid" [disabled] = "mode=='READ'" value="{{Order.paid}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="301-500 units" [disabled] = "mode=='READ'" value="{{Quotation.price300_500}}">
+    <input matInput placeholder="Placed Date" [disabled] = "mode=='READ'" value="{{Order.placedDate}}">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="501-1000 units" [disabled] = "mode=='READ'" value="{{Quotation.price500_1000}}">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Above 1000 units" [disabled] = "mode=='READ'" value="{{Quotation.priceAbove1000}}">
+    <input matInput placeholder="Due Date" [disabled] = "mode=='READ'" value="{{Order.dueDate}}">
   </mat-form-field>
 </div>

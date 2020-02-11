@@ -1,20 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-
-// export interface Order {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
 @Component({
-  selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss']
+  selector: 'app-garment-dashboard',
+  templateUrl: './garment-dashboard.component.html',
+  styleUrls: ['./garment-dashboard.component.scss']
 })
-export class AdminDashboardComponent implements OnInit {
-
+export class GarmentDashboardComponent implements OnInit {
   chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
   chartData = [23,43,45,65,78,99,89,32,45,12,56,76]
   chartType = "line"
@@ -74,34 +65,15 @@ export class AdminDashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.initializeChart();
+    this.initializeChartData();
   }
 
-  initializeChart(){
-    //get last 12 month revenue data from server and update chart data variable
+  initializeChartData(){
+    //enter code to get last 12 month revenue data from server and update chart data variable
   }
 
   updateCounts(){
-    //Enter code here to get the ongoing orders  count, late order count and idle garments
-  }
-
-  removeNotification(id){
-    //Enter code to remove notification with the given input here
-    //Update the notifications list
-    console.log(id + " removed")
-  }
-
-  addNotificaton(title,body,target){
-    if(target=='CUSTOMER'){
-      //Add new notification for customers
-      console.log("customer notification")
-    }else if(target=="GARMENT"){
-      //Add new notification for garments
-      console.log("garment notification")
-    }else{
-      //Add new notification for all
-      console.log("global notification")
-    }
+    //Enter code here to get the ongoing orders  count, late order count and quotation counts
   }
 
   checkIfNotLate(date){

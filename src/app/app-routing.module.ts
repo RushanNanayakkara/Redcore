@@ -13,6 +13,8 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
 import { QuotationComponent } from './quotation/quotation.component';
 import { OrderComponent } from './order/order.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { GarmentDashboardComponent } from './garment-dashboard/garment-dashboard.component';
+import { RedcoreNetworkComponent } from './redcore-network/redcore-network.component';
 
 
 const routes: Routes = [
@@ -28,8 +30,10 @@ const routes: Routes = [
   {path:'gallery', component:ProductGalleryComponent},
   {path:'cdash', component:CustomerDashboardComponent},
   {path:'adash', component:AdminDashboardComponent},
+  {path:'gdash', component:GarmentDashboardComponent},
   {path:'quotation', component:QuotationComponent},
   {path:'order', component:OrderComponent},
+  {path:'redcorenetwork', component:RedcoreNetworkComponent},
 ];
 
 @NgModule({

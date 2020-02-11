@@ -1,5 +1,4 @@
 import { Component, OnInit,Input  } from '@angular/core';
-import { NgbModal,NgbModalOptions,ModalDismissReasons,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-image-modal',
@@ -26,7 +25,6 @@ export class ImageModalComponent implements OnInit {
   }
 
   changeImage(){
-    console.log("Came to change image")
     this.activeImg+=1;
   }
 

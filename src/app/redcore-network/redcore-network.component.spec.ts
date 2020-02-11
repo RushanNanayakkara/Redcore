@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GarmentComponent } from './garment.component';
+import { RedcoreNetworkComponent } from './redcore-network.component';
 
-describe('GarmentComponent', () => {
-  let component: GarmentComponent;
-  let fixture: ComponentFixture<GarmentComponent>;
+describe('RedcoreNetworkComponent', () => {
+  let component: RedcoreNetworkComponent;
+  let fixture: ComponentFixture<RedcoreNetworkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GarmentComponent ]
+      declarations: [ RedcoreNetworkComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GarmentComponent);
+    fixture = TestBed.createComponent(RedcoreNetworkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

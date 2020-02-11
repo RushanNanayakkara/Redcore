@@ -48,7 +48,6 @@ export class ProductGalleryComponent implements OnInit {
   }
 
   open(index) {
-    console.log(index);
     const modalRef = this.modalService.open(ImageModalComponent);
     modalRef.componentInstance.products = this.activeProducts;
     modalRef.componentInstance.modalRef = modalRef;

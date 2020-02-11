@@ -46,6 +46,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './footer/footer.component';
 import {MatListModule} from '@angular/material/list';
+import { GarmentDashboardComponent } from './garment-dashboard/garment-dashboard.component';
+import { RedcoreNetworkComponent } from './redcore-network/redcore-network.component';
 
 
 @NgModule({
@@ -69,6 +71,8 @@ import {MatListModule} from '@angular/material/list';
     AdminDashboardComponent,
     LinechartComponent,
     FooterComponent,
+    GarmentDashboardComponent,
+    RedcoreNetworkComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,7 +104,8 @@ import {MatListModule} from '@angular/material/list';
   ],
   providers: [],
   entryComponents:[
-    ImageModalComponent
+    ImageModalComponent,
+    OrderFormComponent
   ],
   bootstrap: [AppComponent]
 })
