@@ -33,7 +33,8 @@ export class AppComponent {
     '/register',
     '/designer3D',
     '/emailverification',
-    '/passwordrecovery'
+    '/passwordrecovery',
+    '/login'
   ]
   // designerURL = 'http://localhost:8080/';
 

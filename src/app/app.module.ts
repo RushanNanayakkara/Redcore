@@ -48,7 +48,8 @@ import { FooterComponent } from './footer/footer.component';
 import {MatListModule} from '@angular/material/list';
 import { GarmentDashboardComponent } from './garment-dashboard/garment-dashboard.component';
 import { RedcoreNetworkComponent } from './redcore-network/redcore-network.component';
-
+import { PaymentComponent } from './payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { RedcoreNetworkComponent } from './redcore-network/redcore-network.compo
     FooterComponent,
     GarmentDashboardComponent,
     RedcoreNetworkComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -100,12 +102,14 @@ import { RedcoreNetworkComponent } from './redcore-network/redcore-network.compo
     FormsModule,
     ReactiveFormsModule,
     MatRadioModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [],
   entryComponents:[
     ImageModalComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    QuotationFormComponent
   ],
   bootstrap: [AppComponent]
 })

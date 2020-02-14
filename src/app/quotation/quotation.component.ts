@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { MatRadioChange } from '@angular/material';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { QuotationFormComponent } from '../quotation-form/quotation-form.component'
 
 @Component({
   selector: 'app-quotation',
@@ -114,12 +116,19 @@ export class QuotationComponent implements OnInit {
       ];
     }
 
+    open() {
+      const modalRef = this.modalService.open(QuotationFormComponent,{ size: 'xl', backdrop: 'static' });
+      modalRef.componentInstance.mode = "INPUT";
+      modalRef.componentInstance.modalRef = modalRef;
+      modalRef.componentInstance.Quotation= {};
+    }
+
     tableDblClickAction(row){
       this.opened = true;
       this.activeQuotation = row;
     }
 
-    constructor(fb: FormBuilder) {
+    constructor(fb: FormBuilder,private modalService:NgbModal) {
       this.options = fb.group({
         bottom: 0,
         fixed: false,

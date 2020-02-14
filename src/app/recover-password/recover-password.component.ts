@@ -13,7 +13,7 @@ export class RecoverPasswordComponent implements OnInit {
   }
 
   sendPasswordRecoveryEmail(){
-    console.log("recovery email sent")
+
     if(false){
       document.getElementById('success_alert').classList.remove('d-none')
     }else{

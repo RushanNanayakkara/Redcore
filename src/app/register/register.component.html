@@ -1,40 +1,37 @@
 <div class="container center-box">
   <div id="logo-wrapper">
     <img src="assets/img/flatLogoNoBackground.png" alt="" id="flatlogo" class="contained">
-    <form id="loginform" action="" method="">
+    <form id="loginform" action="" method="" style="font-size: small;" >
       <span id="welcome-text" class="graytext small">Create new account below.</span>
-      <div class="form-item">
-          <label for="input-email">Email</label>
-          <input  type="text" name="email" id="input-email">
-      </div>
-      <hr>
-      <div class="form-item"class="form-item">
-        <label for="input-password">Password</label>
-        <input type="password" name="password" id="input-password">
-      </div>
-      <hr>
-      <div class="form-item">
-          <label for="input-firstname">First Name</label>
-          <input type="text" name="firstname" id="input-firstname">
-      </div>
-      <hr>
-      <div class="form-item">
-          <label for="input-lastname">Last Name</label>
-          <input type="text" name="lastname" id="input-lastname">
-      </div>
-      <hr>
-      <div class="form-item">
-          <label for="input-address" class="d-inline-block">Address</label>
-          <input type="text" name="lastname" id="input-address">
-      </div>
-      <hr>
-      <div class="form-item" style="height: fit-content;">
-          <label for="input-tel">Tel</label>
-          <input type="text" name="lastname" id="input-tel">
-      </div>
-      <hr>
-      <div id="button-panel" class="mt-3">
-        <button type="button" (click)="signUp()" class="btn btn-primary float-right pl-2 pr-2 pt-1 pb-1 col-4" style="background-color: rgb(117, 0, 0); border-color: rgb(117, 0, 0); border-radius: 4px;">
+      <mat-form-field class="col-12 mt-0">
+        <input #email id="input-email"  type="email" matInput placeholder="Email">
+      </mat-form-field>
+      <mat-form-field class="col-12 mt-0">
+        <input #password id="input-password"  type="password" matInput placeholder="Password">
+      </mat-form-field>
+      <mat-form-field class="col-12 mt-0">
+        <input #firstname id="input-firstname"  type="text" matInput placeholder="First Name">
+      </mat-form-field>
+      <mat-form-field class="col-12 mt-0">
+        <input #lastname id="input-lastname"  type="text" matInput placeholder="Last Name">
+      </mat-form-field>
+      <mat-form-field class="col-12 mt-0">
+        <input #address id="input-address"  type="text" matInput placeholder="Address">
+      </mat-form-field>
+      <mat-form-field class="col-12 mt-0">
+        <input #telNo id="input-telNo"  type="tel" matInput placeholder="TelNo">
+      </mat-form-field>
+      <div id="button-panel" class="mt-1">
+        <button type="button" (click)="
+        signUp({
+          email:email.value,
+          password:password.value,
+          firstName:firstname.value,
+          lastName:lastname.value,
+          type:'CUSTOMER',
+          address:address.value,
+          tel:telNo.value
+        })" class="btn btn-primary float-right pl-2 pr-2 pt-1 pb-1 col-4" style="background-color: rgb(117, 0, 0); border-color: rgb(117, 0, 0); border-radius: 4px;">
           Register
         </button>
       </div>
