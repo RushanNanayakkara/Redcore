@@ -48,6 +48,8 @@ import { FooterComponent } from './footer/footer.component';
 import {MatListModule} from '@angular/material/list';
 import { GarmentDashboardComponent } from './garment-dashboard/garment-dashboard.component';
 import { RedcoreNetworkComponent } from './redcore-network/redcore-network.component';
+import { OrderplaceComponent } from './orderplace/orderplace.component';
+import { QuotationplaceComponent } from './quotationplace/quotationplace.component';
 
 
 @NgModule({
@@ -73,6 +75,8 @@ import { RedcoreNetworkComponent } from './redcore-network/redcore-network.compo
     FooterComponent,
     GarmentDashboardComponent,
     RedcoreNetworkComponent,
+    OrderplaceComponent,
+    QuotationplaceComponent,
   ],
   imports: [
     BrowserModule,
