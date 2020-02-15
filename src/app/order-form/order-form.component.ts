@@ -11,8 +11,12 @@ export class OrderFormComponent implements OnInit {
 
   @Input() mode;
   @Input() Order;
+  @Input() QuotationID;
+  @Input() modalRef;
 
   user
+  success:boolean;
+  fail:boolean;
 
   OrderImageURL = "https://images-na.ssl-images-amazon.com/images/I/71iedC2D5tL._UX569_.jpg";
   QuotationList = []
@@ -29,10 +33,27 @@ export class OrderFormComponent implements OnInit {
 
   ngOnInit() {
     this.Order = {}
+    this.success = false
+    this.fail = false
   }
 
   placeOrder(){
-    console.log(this.QuotationList);
+    this.Order.status = "PLACED"
+    this.Order.customerid = this.user._id
+    this.Order.paid = 0
+
+    this.http.post<any>('http://localhost:3000/order/add',this.Order,{observe:'response',}).subscribe(data => {
+      if(typeof data.body._id !== 'undefined'){
+        console.log("Order placed")
+        this.fail = false
+        this.success = true
+      }else{
+        this.success = false
+        this.fail = true
+      }
+    })
+
+
   }
 
   loadQuotationList(){

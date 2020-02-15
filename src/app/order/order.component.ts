@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import { MatRadioChange } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { OrderFormComponent } from '../order-form/order-form.component'
+import { Router } from '@angular/router'
+import { HttpClient } from '@angular/common/http';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-order',
@@ -14,29 +17,30 @@ export class OrderComponent implements OnInit {
   options: FormGroup;
   opened: boolean;
   activeOrder;
+  user;
 
   viewAll: boolean;
 
-  Orders = [
-    {
-      id:"O001",
-      name:"Order 1",
-      customerID:"C001",
-      garmentID:"G001",
-      designID:"D001",
-      quotationID:"Q001",
-      amount:100,
-      price:100000,
-      paid:35000,
-      placedDate:"06-08-2020",
-      dueDate:"08-08-2020",
-      status:"ONGOING"
-    }
-  ]
+  Orders = []
 
   displayedColumns = ["ID","Name","CustomerID","GarmentID","Due Date","Status"];
 
-    // displayedColumns = ["ID","Name","RequestDate", "Status"];
+  loadTableData(){
+    this.http.get<any>('http://localhost:3000/order/all',{observe:'response',params:{customer_id:this.user._id}}).subscribe(data => {
+          if(data.status==200){
+            this.Orders = [];
+            data.body.forEach(element => {
+              let dt = new Date(element.duedate).toLocaleDateString("en-US")
+              element.duedate = dt;
+              if(typeof element.garmentid=='undefined'){
+                element.garmentid = "N/A"
+              }
+              this.Orders.push(element);
+
+            });
+          }
+        });
+  }
 
     radioChange(event: MatRadioChange) {
       //enter get all and get active codes here
@@ -68,36 +72,28 @@ export class OrderComponent implements OnInit {
     }
 
     open(index) {
-      const modalRef = this.modalService.open(OrderFormComponent,{ size: 'xl', backdrop: 'static' });
+      const modalRef = this.modalService.open(OrderFormComponent,{ size: 'lg', backdrop: 'static' });
       modalRef.componentInstance.mode = "INPUT";
       modalRef.componentInstance.modalRef = modalRef;
     }
 
-    constructor(fb: FormBuilder,private modalService:NgbModal) {
+    constructor(fb: FormBuilder,private modalService:NgbModal, private router: Router,private http: HttpClient) {
       this.options = fb.group({
         bottom: 0,
         fixed: false,
         top: 0
       });
-      this.activeOrder =
-      {
-        id:"O001",
-        name:"Order 1",
-        customerID:"C001",
-        garmentID:"G001",
-        designID:"D001",
-        quotationID:"Q001",
-        amount:100,
-        price:100000,
-        paid:35000,
-        placedDate:"06-08-2020",
-        dueDate:"08-08-2020",
-        status:"ONGOING"
-      }
+
      }
 
     ngOnInit() {
+      this.user = JSON.parse(localStorage.getItem("user"));
+      if(typeof this.user===undefined){
+        this.router.navigate(["/"]);
+        return;
+      }
       this.viewAll = false;
+      this.loadTableData();
     }
 
 }

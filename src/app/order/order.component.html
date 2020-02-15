@@ -24,7 +24,7 @@
       <!-- ID Column -->
       <ng-container matColumnDef="ID">
         <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let Order" class="font-weight-bold"> {{Order.id}} </td>
+        <td mat-cell *matCellDef="let Order" class="font-weight-bold"> {{Order._id}} </td>
       </ng-container>
 
       <!-- Name Column -->
@@ -36,19 +36,19 @@
       <!-- CustomerID Column -->
       <ng-container matColumnDef="CustomerID">
         <th mat-header-cell *matHeaderCellDef> CustomerID </th>
-        <td mat-cell *matCellDef="let Order"> {{Order.customerID}} </td>
+        <td mat-cell *matCellDef="let Order"> {{Order.customerid}} </td>
       </ng-container>
 
       <!-- GarmentID Column -->
       <ng-container matColumnDef="GarmentID">
         <th mat-header-cell *matHeaderCellDef> GarmentID </th>
-        <td mat-cell *matCellDef="let Order"> {{Order.garmentID}} </td>
+        <td mat-cell *matCellDef="let Order"> {{Order.garmentid}} </td>
       </ng-container>
 
       <!-- Due Date Column -->
       <ng-container matColumnDef="Due Date">
         <th mat-header-cell *matHeaderCellDef> Due Date </th>
-        <td mat-cell *matCellDef="let Order"> {{Order.dueDate}} </td>
+        <td mat-cell *matCellDef="let Order"> {{Order.duedate}} </td>
       </ng-container>
 
       <!-- Status Column -->
@@ -64,4 +64,4 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<button id="btn-place-order" class="btn btn-danger btn-rounded btn-lg" (click)="open()" >Place Order</button>
+<button *ngIf="user.type=='CUSTOMER'" id="btn-place-order" class="btn btn-danger btn-rounded" (click)="open()" >Place New Order</button>

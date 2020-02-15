@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import { MatRadioChange } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { QuotationFormComponent } from '../quotation-form/quotation-form.component'
+import { OrderFormComponent } from '../order-form/order-form.component'
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
@@ -45,10 +46,18 @@ export class QuotationComponent implements OnInit {
     }
 
     open() {
-      const modalRef = this.modalService.open(QuotationFormComponent,{ size: 'xl', backdrop: 'static' });
+      const modalRef = this.modalService.open(QuotationFormComponent,{ size: 'lg', backdrop: 'static' });
       modalRef.componentInstance.mode = "INPUT";
       modalRef.componentInstance.modalRef = modalRef;
       modalRef.componentInstance.Quotation= {};
+      this.needUpdate = true;
+    }
+
+    openAddOrder(){
+      const modalRef = this.modalService.open(OrderFormComponent,{ size: 'lg', backdrop: 'static' });
+      modalRef.componentInstance.mode = "INPUT";
+      modalRef.componentInstance.modalRef = modalRef;
+      modalRef.componentInstance.QuotationID= this.activeQuotation.id;
       this.needUpdate = true;
     }
 

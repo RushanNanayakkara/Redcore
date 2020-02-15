@@ -21,6 +21,7 @@
     <input class="col-12" matInput  placeholder="Name" [disabled]="mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="Quotation.name">
   </mat-form-field>
 
+  <span class="text-secondary d-block">Design Type</span>
   <mat-radio-group [(ngModel)]="Quotation.designType" [disabled]="mode=='READ'||user.type!=='CUSTOMER'" aria-label="Design Type">
     <mat-radio-button value="REDCORE_DESIGN">Redcore</mat-radio-button>
     <mat-radio-button class="ml-2" value="CUSTOM_DESIGN">Custom</mat-radio-button>

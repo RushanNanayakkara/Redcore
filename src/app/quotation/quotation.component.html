@@ -3,7 +3,7 @@
                [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
                [fixedBottomGap]="options.value.bottom" position="end">
                <button mat-button (click)="sidenav.toggle()" class="float-right btn-danger m-2">X</button>
-               <button mat-button (click)="open()" id="btn_place_order" class="btn p-2 float-right text-white btn-danger m-2">Place Order</button>
+               <button mat-button (click)="openAddOrder()" id="btn_place_order" class="btn p-2 float-right text-white btn-danger m-2">Place Order</button>
                <app-quotation-form mode="READ" [Quotation]="activeQuotation"></app-quotation-form>
   </mat-sidenav>
 
