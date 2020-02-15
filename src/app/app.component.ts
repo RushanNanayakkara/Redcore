@@ -40,20 +40,7 @@ export class AppComponent {
   DashboardLink;
 
   constructor(private router:Router){
-    switch (JSON.parse(localStorage.getItem('user')).type) {
-      case "ADMIN":
-        this.DashboardLink = "/adash";
-        break;
-      case "CUSTOMER":
-        this.DashboardLink = "/cdash";
-        break;
-      case "GARMENT":
-        this.DashboardLink = "/gdash";
-        break;
-      default:
-        break;
-    }
-    console.log(this.DashboardLink);
+
   }
 
   setActiveTab(tabId) {
