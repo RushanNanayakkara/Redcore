@@ -1,0 +1,30 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+.center-box{
+  width: 80%;
+  min-width: 80%;
+  min-height: 80%;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#form{
+  padding: 2%;
+  padding-top: 0;
+  max-height: 100%;
+  min-height: 90%;
+  min-width: 50%;
+}
+
+
+#button-panel{
+  height: 10vh;
+  width: 50%;
+   margin-left: 50%;
+ 
+}
