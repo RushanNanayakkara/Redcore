@@ -62,8 +62,9 @@
     <mat-radio-button class="ml-3" value="CHINESECOLLAR">Chinese</mat-radio-button>
   </mat-radio-group>
 
-  <div class="col-12">
+  <div class="col-12" id="btn-quotation-request" *ngIf="mode=='INPUT'">
     <button class="btn btn-danger btn-rounded col-3" style="float: right;">Request</button>
   </div>
 
+  <div class="col-12" style="height: 10vh;"></div>
 </div>
