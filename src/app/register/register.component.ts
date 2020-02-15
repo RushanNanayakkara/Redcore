@@ -9,33 +9,76 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  email: String;
-  password: String;
-  firstName: String;
-  lastName: String;
-  address: String;
-  tel: String;
-  type: String = "CUSTOMER";
+  email: string;
+  password1: string;
+  password2: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  tel: string;
+  type: string = "CUSTOMER";
 
   validate(){
-    return true;
+    let status = true;
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)){
+      status = false;
+      document.getElementById("input-email").classList.add("text-danger");
+    }
+    if(this.password1!=this.password2){
+      status = false;
+      document.getElementById("input-password1").classList.add("text-danger");
+      document.getElementById("input-password2").classList.add("text-danger");
+    }
+    if(!/^\+?[0-9]{10,13}$/.test(this.tel)){
+      status = false;
+      document.getElementById("input-telNo").classList.add("text-danger");
+    }
+    return status;
   }
 
   constructor(private http: HttpClient,private router:Router) { }
 
   ngOnInit() {
+    document.getElementById("input-email").onfocus  = ()=>{
+      document.getElementById("input-email").classList.remove('text-danger')
+    }
 
+    document.getElementById("input-password1").onfocus = ()=>{
+      document.getElementById('input-password1').classList.remove('text-danger')
+      document.getElementById('input-password2').classList.remove('text-danger')
+    }
+
+    document.getElementById("input-password2").onfocus = ()=>{
+      document.getElementById('input-password1').classList.remove('text-danger')
+      document.getElementById('input-password2').classList.remove('text-danger')
+    }
+
+    document.getElementById("input-telNo").onfocus = ()=>{
+      document.getElementById("input-telNo").classList.remove('text-danger')
+    }
   }
 
-  signUp(user){
+  signUp(){
+    let user = {
+      email:this.email,
+      password:this.password1,
+      firstName:this.firstName,
+      lastName:this.lastName,
+      address:this.address,
+      tel:this.tel,
+      type:this.type,
+    }
     if(this.validate()){
-      this.http.post<any>('http://localhost:3100/api/v1/users/signUp',user,{observe:'response',}).subscribe(data => {
-        if(data.status>=200 && data.status<400){
+      this.http.post<any>('http://localhost:3000/users/signUp',user,{observe:'response',}).subscribe(data => {
+        if(typeof data.body._id !== 'undefined'){
+          localStorage.setItem("user",JSON.stringify(data.body));
           this.router.navigate(["emailverification"]);
         }else{
-          console.log("failed")
+          document.getElementById("warning-div").classList.add("d-block");
         }
       })
+    }else{
+      document.getElementById("loginform").scrollTop = 0;
     }
   }
 }

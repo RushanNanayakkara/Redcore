@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import { MatRadioChange } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { QuotationFormComponent } from '../quotation-form/quotation-form.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-quotation',
@@ -13,6 +14,7 @@ export class QuotationComponent implements OnInit {
   options: FormGroup;
   opened: boolean;
   activeQuotation;
+  user
 
   viewAll: boolean;
 
@@ -128,7 +130,7 @@ export class QuotationComponent implements OnInit {
       this.activeQuotation = row;
     }
 
-    constructor(fb: FormBuilder,private modalService:NgbModal) {
+    constructor(private router: Router,fb: FormBuilder,private modalService:NgbModal) {
       this.options = fb.group({
         bottom: 0,
         fixed: false,
@@ -152,6 +154,11 @@ export class QuotationComponent implements OnInit {
      }
 
     ngOnInit() {
+      this.user = JSON.parse(localStorage.getItem("user"));
+      if(typeof this.user===undefined){
+        this.router.navigate(["/"]);
+        return;
+      }
       this.viewAll = false;
     }
 

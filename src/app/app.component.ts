@@ -36,16 +36,27 @@ export class AppComponent {
     '/passwordrecovery',
     '/login'
   ]
-  // designerURL = 'http://localhost:8080/';
+
+  DashboardLink;
 
   constructor(private router:Router){
-
+    switch (JSON.parse(localStorage.getItem('user')).type) {
+      case "ADMIN":
+        this.DashboardLink = "/adash";
+        break;
+      case "CUSTOMER":
+        this.DashboardLink = "/cdash";
+        break;
+      case "GARMENT":
+        this.DashboardLink = "/gdash";
+        break;
+      default:
+        break;
+    }
+    console.log(this.DashboardLink);
   }
 
   setActiveTab(tabId) {
-    // if(tabId=='DesignerTab'){
-    //   window.location.href = this.designerURL;
-    // }
     this.tabStatus[this.prevTab] = false;
     this.tabStatus[tabId] = true;
     this.prevTab = tabId;

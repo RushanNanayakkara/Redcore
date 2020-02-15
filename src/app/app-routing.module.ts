@@ -16,6 +16,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { GarmentDashboardComponent } from './garment-dashboard/garment-dashboard.component';
 import { RedcoreNetworkComponent } from './redcore-network/redcore-network.component';
 import { PaymentComponent } from './payment/payment.component';
+import { AccountComponent } from './account/account.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path:'order', component:OrderComponent},
   {path:'redcorenetwork', component:RedcoreNetworkComponent},
   {path:'payment', component:PaymentComponent},
+  {path:'account', component:AccountComponent},
 ];
 
 @NgModule({

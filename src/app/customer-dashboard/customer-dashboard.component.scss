@@ -1,4 +1,4 @@
-$counter-icon-width : 10vw;
+$counter-icon-width : 8vw;
 $counter-width: 23vw;
 
 #place-order-button{
@@ -18,6 +18,7 @@ $counter-width: 23vw;
   margin-top: 10vh;
   margin-right: auto;
   background-color: rgba($color: #ffffff9a, $alpha: 1.0);
+  font-size: xx-large;
 }
 
 #ongoing-counter{
@@ -98,12 +99,13 @@ $counter-width: 23vw;
 .summary-top-row span{
   display: inline-block;
   margin-left: 10%;
-  font-size: larger;
+  font-size: small;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 
 .summary-top-row span:first-child{
+
 }
 
 

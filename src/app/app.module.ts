@@ -50,6 +50,7 @@ import { GarmentDashboardComponent } from './garment-dashboard/garment-dashboard
 import { RedcoreNetworkComponent } from './redcore-network/redcore-network.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     GarmentDashboardComponent,
     RedcoreNetworkComponent,
-    PaymentComponent
+    PaymentComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

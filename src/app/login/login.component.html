@@ -4,19 +4,29 @@
     <form id="loginform" method="post">
       <div id="welcome-text" class="graytext small">Welcome back! Please login to your account.</div>
       <mat-form-field class="col-12">
-        <input id="input-username mt-2"  type="email" matInput placeholder="Email">
+        <input #email_field id="input-email"  type="email" matInput placeholder="Email">
       </mat-form-field>
       <mat-form-field class="col-12 mt-2">
-        <input id="input-password"  type="password" matInput placeholder="Password">
+        <input #password_field id="input-password"  type="password" matInput placeholder="Password">
       </mat-form-field>
+      <div id="warning-div" class="alert alert-danger">
+        Invalid username or password!
+      </div>
       <div>
         <input class="ml-3" type="checkbox" name="rememberme" value="remember">
         <span class="ml-1 form-footer-text">Remember me</span>
         <a href="#" class="mr-3 form-footer-text float-right">Forgot password?</a>
       </div>
       <div id="button-panel" class="mt-3">
-        <button type="button" (click)="login()" class="float-left ml-5 btn-primary pl-2 pr-2 pt-1 pb-1 col-4" style="background-color: rgb(72, 63, 80); border-color: rgb(72, 63, 80); border-radius: 4px;">Login</button>
-        <button type="button" class="float-right mr-5 btn-outline-dark pl-2 pr-2 pt-1 pb-1 col-4 " routerLink='/register' style="background-color: rgba(95, 92, 98, 0); border-width: 1px; border-color: rgb(70, 70, 70,0.85); border-radius: 4px;">Signup</button>
+        <button type="button" (click)="login({
+            email:email_field.value,
+            password:password_field.value
+          })" class="float-left ml-5 btn-primary pl-2 pr-2 pt-1 pb-1 col-4" style="background-color: rgb(72, 63, 80); border-color: rgb(72, 63, 80); border-radius: 4px;">
+          Login
+        </button>
+        <button type="button" class="float-right mr-5 btn-outline-dark pl-2 pr-2 pt-1 pb-1 col-4 " routerLink='/register' style="background-color: rgba(95, 92, 98, 0); border-width: 1px; border-color: rgb(70, 70, 70,0.85); border-radius: 4px;">
+          Signup
+        </button>
       </div>
       <div id="termsofuse">
         Terms of use.Privacy policy.

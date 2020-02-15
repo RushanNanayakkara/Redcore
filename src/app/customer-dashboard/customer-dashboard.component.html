@@ -5,28 +5,28 @@
     <mat-card id="ongoing-card" class="rounded ongoing-card">
       <mat-card-content id="ongoing-counter">
         <img src="assets/img/pijama.png" alt="tshirt-image" srcset=""  class="rounded">
-        <span class="display-4 text-secondary float-left ml-3">Ongoing</span>
-        <span class="display-1 text-danger float-right mr-4">{{ongoing_order_count}}</span>
+        <span class="display-4 text-secondary float-left ml-3" style="font-size: xx-large;">Ongoing</span>
+        <span class="display-4 text-danger float-right mr-4">{{ongoing_order_count}}</span>
       </mat-card-content>
     </mat-card>
     <mat-card id="complete-card" class="rounded ongoing-card">
       <mat-card-content id="complete-counter">
         <img src="assets/img/dash-complete.png" alt="tshirt-image" srcset="" class="rounded">
-        <span class="display-4 text-secondary float-left ml-3">Complete</span>
-        <span class="display-1 text-success float-right mr-4">{{complete_order_count}}</span>
+        <span class="display-4 text-secondary float-left ml-3" style="font-size: xx-large;">Complete</span>
+        <span class="display-4 text-success float-right mr-4">{{complete_order_count}}</span>
       </mat-card-content>
     </mat-card>
     <mat-card id="quotation-card" class="rounded ongoing-card">
       <mat-card-content id="quotation-counter">
         <img src="assets/img/dash-quotation-icon.png" alt="tshirt-image" srcset="" class="rounded">
-        <span class="display-4 text-secondary float-left ml-3">Quotations</span>
-        <span class="display-1 text-warning float-right mr-4">{{quotation_count}}</span>
+        <span class="display-4 text-secondary float-left ml-3" style="font-size: xx-large;">Quotations</span>
+        <span class="display-4 text-warning float-right mr-4">{{quotation_count}}</span>
       </mat-card-content>
     </mat-card>
   </div>
   <div id="summary-row" class="row m-0">
     <div id="order-progress-container" class="summary-row-container">
-      <div class="display-4 ml-2 text-secondary">
+      <div class="display-4 ml-2 text-secondary" style="font-size: xx-large;">
         <small>Order Progress</small>
       </div>
       <div class="summary-row-scrollable">
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div id="quotation-container"  class="summary-row-container">
-      <div class="display-4 ml-2 text-secondary">
+      <div class="display-4 ml-2 text-secondary" style="font-size: xx-large;">
         <small>Quotation Request Status</small>
       </div>
       <div class="summary-row-scrollable">
@@ -58,7 +58,7 @@
             :(quotation.status=='PENDING')?'text-warning'
             :'text-danger'">status: {{quotation.status}}</span>
           </div>
-          <div class="summary-bottom-row">
+          <div class="summary-bottom-row" style="font-size: small;">
             <span>item: {{quotation.itemname}}</span>
             <span>data: {{quotation.date}}</span>
           </div>
