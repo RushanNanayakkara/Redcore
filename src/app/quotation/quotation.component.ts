@@ -4,6 +4,8 @@ import { MatRadioChange } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { QuotationFormComponent } from '../quotation-form/quotation-form.component'
 import { Router } from '@angular/router'
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-quotation',
@@ -13,59 +15,14 @@ import { Router } from '@angular/router'
 export class QuotationComponent implements OnInit {
   options: FormGroup;
   opened: boolean;
+  needUpdate: boolean;
   activeQuotation;
   user
 
   viewAll: boolean;
 
 
-  Quotations = [
-    {
-      id: "Q001",
-      customerID: "C001",
-      name: "my quotation 1",
-      requestDate:"01-02-2020",
-      issuedDate:"01-02-2020",
-      validPeriod:90,
-      status: "PENDING",
-      designID: "D001",
-      price100_300: 800,
-      price300_500: 700,
-      price500_1000: 600,
-      priceAbove1000: 500,
-      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-    },
-    {
-      id: "Q002",
-      customerID: "C001",
-      name: "my quotation 1",
-      requestDate:"01-02-2020",
-      issuedDate:"01-02-2020",
-      validPeriod:90,
-      status: "PENDING",
-      designID: "D001",
-      price100_300: 800,
-      price300_500: 700,
-      price500_1000: 600,
-      priceAbove1000: 500,
-      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-    },
-    {
-      id: "Q003",
-      customerID: "C001",
-      name: "my quotation 1",
-      requestDate:"01-02-2020",
-      issuedDate:"01-02-2020",
-      validPeriod:90,
-      status: "PENDING",
-      designID: "D001",
-      price100_300: 800,
-      price300_500: 700,
-      price500_1000: 600,
-      priceAbove1000: 500,
-      image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-    },
-  ];
+  Quotations = []
 
 
     displayedColumns = ["ID","Name","IssuedDate", "RequestDate", "Status"];
@@ -84,38 +41,7 @@ export class QuotationComponent implements OnInit {
 
     search(){
       //enter search code here
-      this.Quotations = [
-        {
-          id: "Q001",
-          customerID: "C001",
-          name: "Search 1",
-          requestDate:"01-02-2020",
-          issuedDate:"01-02-2020",
-          validPeriod:90,
-          status: "PENDING",
-          designID: "D001",
-          price100_300: 800,
-          price300_500: 700,
-          price500_1000: 600,
-          priceAbove1000: 500,
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        },
-        {
-          id: "Q001",
-          customerID: "C001",
-          name: "Search 2",
-          requestDate:"01-02-2020",
-          issuedDate:"01-02-2020",
-          validPeriod:90,
-          status: "PENDING",
-          designID: "D001",
-          price100_300: 800,
-          price300_500: 700,
-          price500_1000: 600,
-          priceAbove1000: 500,
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-        },
-      ];
+
     }
 
     open() {
@@ -123,6 +49,7 @@ export class QuotationComponent implements OnInit {
       modalRef.componentInstance.mode = "INPUT";
       modalRef.componentInstance.modalRef = modalRef;
       modalRef.componentInstance.Quotation= {};
+      this.needUpdate = true;
     }
 
     tableDblClickAction(row){
@@ -130,27 +57,12 @@ export class QuotationComponent implements OnInit {
       this.activeQuotation = row;
     }
 
-    constructor(private router: Router,fb: FormBuilder,private modalService:NgbModal) {
+    constructor(private router: Router,fb: FormBuilder,private modalService:NgbModal, private http: HttpClient,private cdRef:ChangeDetectorRef) {
       this.options = fb.group({
         bottom: 0,
         fixed: false,
         top: 0
       });
-      this.activeQuotation = {
-        id: "Q001",
-        customerID: "C001",
-        name: "my quotation 1",
-        requestDate:"01-02-2020",
-        issuedDate:"01-02-2020",
-        validPeriod:90,
-        status: "PENDING",
-        designID: "D001",
-        price100_300: 800,
-        price300_500: 700,
-        price500_1000: 600,
-        priceAbove1000: 500,
-        image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
-      }
      }
 
     ngOnInit() {
@@ -160,6 +72,53 @@ export class QuotationComponent implements OnInit {
         return;
       }
       this.viewAll = false;
+      this.updateTable();
+      setInterval(function(){
+        if(this.needUpdate){
+          this.updateTable();
+          console.log("came here")
+        }
+      }, 3000);
+    }
+
+    updateTable(){
+      this.http.get<any>('http://localhost:3000/quotation/all',{observe:'response',params:{customer_id:this.user._id}}).subscribe(data => {
+          if(data.status==200){
+            this.Quotations = [];
+            data.body.forEach(element => {
+              this.addToTable(element);
+            });
+          }
+        });
+        this.cdRef.detectChanges();
+    }
+
+    addToTable(quotation){
+      let issuedDate;
+      if(typeof quotation.items[0].issuedDate==undefined){
+        issuedDate = "N/A"
+      }else{
+        issuedDate =  quotation.items[0].issuedDate
+      }
+      let dt = new Date(quotation.requestDate).toLocaleDateString("en-US")
+      this.Quotations.push(
+        {
+          id: quotation._id,
+          requestDate: dt,
+          name: quotation.items[0].name,
+          designType: quotation.items[0].designType,
+          designID: quotation.items[0].designID,
+          designURL: quotation.items[0].designURL,
+          quantity: quotation.items[0].quantity,
+          material: quotation.items[0].material,
+          collarType: quotation.items[0].collarType,
+          sleeveType: quotation.items[0].sleeveType,
+          price: quotation.items[0].price,
+          issuedDate: issuedDate,
+          status: quotation.items[0].status,
+          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+      }
+      );
     }
 
 }

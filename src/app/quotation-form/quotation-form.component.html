@@ -1,8 +1,16 @@
 <img *ngIf="mode=='READ'" src="https://lh3.googleusercontent.com/proxy/-DcWESDSpqYUQOcVfapsg5FnfulQrCgKgc9E571Sj0CzdAEHxbn6Gu8REjSMfBvq1wmkWNne6bHp84qnz7IQ82C1nN0AQHbOMeY39KV2JNieI7dFarZI" class="col-4" alt="" srcset="">
 <div id="side-content-1" class="example-container">
   <h5 class="display-4 text-secondary font-weight-bold" *ngIf="mode=='INPUT'" style="font-size: xx-large;"><span class="text-danger">Red</span><span class="text-dark">Core</span> Quotation</h5>
+
+  <div *ngIf="mode=='INPUT'" [class.d-none]="!success" id="success-div" class="alert alert-success">
+    Quotation request sent
+  </div>
+  <div *ngIf="mode=='INPUT'" [class.d-none]="!fail" id="success-div" class="alert alert-danger">
+      Request failed!<small> Please retry or if the problem persists contact through contact number</small>
+    </div>
+{{Quotation.designID}}
   <mat-form-field *ngIf="mode=='READ'">
-    <input class="col-12" matInput placeholder="QuotationID" disabled [(ngModel)]="quotationid" >
+    <input class="col-12" matInput placeholder="QuotationID" disabled [(ngModel)]="Quotation.id" >
   </mat-form-field>
 
   <mat-form-field *ngIf="mode=='READ'">
@@ -10,60 +18,60 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input class="col-12" matInput  placeholder="Name" [disabled]="mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="name">
+    <input class="col-12" matInput  placeholder="Name" [disabled]="mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="Quotation.name">
   </mat-form-field>
 
-  <mat-radio-group [(ngModel)]="designType" [disabled]="mode=='READ'||user.type!=='CUSTOMER'" aria-label="Design Type">
+  <mat-radio-group [(ngModel)]="Quotation.designType" [disabled]="mode=='READ'||user.type!=='CUSTOMER'" aria-label="Design Type">
     <mat-radio-button value="REDCORE_DESIGN">Redcore</mat-radio-button>
     <mat-radio-button class="ml-2" value="CUSTOM_DESIGN">Custom</mat-radio-button>
   </mat-radio-group>
 
-  <mat-form-field *ngIf="designType=='REDCORE_DESIGN'">
-    <input class="col-12" matInput placeholder="DesignID" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="designID">
+  <mat-form-field *ngIf="Quotation.designType=='REDCORE_DESIGN'">
+    <input class="col-12" matInput placeholder="DesignID" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="Quotation.designID">
   </mat-form-field>
 
-  <mat-form-field *ngIf="designType=='CUSTOM_DESIGN'">
-    <input class="col-12" matInput placeholder="DesignURL" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="designURL">
-  </mat-form-field>
-
-  <mat-form-field *ngIf="mode=='READ'">
-    <input class="col-12" matInput placeholder="Request Date" disabled [(ngModel)]="requestDate">
+  <mat-form-field *ngIf="Quotation.designType=='CUSTOM_DESIGN'">
+    <input class="col-12" matInput placeholder="DesignURL" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="Quotation.designURL">
   </mat-form-field>
 
   <mat-form-field *ngIf="mode=='READ'">
-    <input class="col-12" matInput placeholder="Issued Date" disabled [(ngModel)]="issuedDate">
+    <input class="col-12" matInput placeholder="Request Date" disabled [(ngModel)]="Quotation.requestDate">
   </mat-form-field>
 
   <mat-form-field *ngIf="mode=='READ'">
-    <input class="col-12" matInput placeholder="Valid Period" [disabled] = "user.type=='CUSTOMER'" type="number" [(ngModel)]="validPeriod">
+    <input class="col-12" matInput placeholder="Issued Date" disabled [(ngModel)]="Quotation.issuedDate">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="mode=='READ'">
+    <input class="col-12" matInput placeholder="Valid Period" [disabled] = "user.type=='CUSTOMER'" type="number" [(ngModel)]="Quotation.validPeriod">
   </mat-form-field>
 
   <mat-form-field>
-    <input class="col-12" matInput placeholder="Quantity" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="quantity">
+    <input class="col-12" matInput placeholder="Quantity" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="Quotation.quantity">
   </mat-form-field>
 
   <mat-form-field  *ngIf="mode=='READ'">
-    <input class="col-12" matInput  placeholder="Status" [disabled] = "user.type=='CUSTOMER'" [(ngModel)]="status">
+    <input class="col-12" matInput  placeholder="Status" [disabled] = "user.type=='CUSTOMER'" [(ngModel)]="Quotation.status">
   </mat-form-field>
 
   <mat-form-field>
-    <input class="col-12" matInput  placeholder="Material" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="material">
+    <input class="col-12" matInput  placeholder="Material" [disabled] = "mode=='READ'||user.type!=='CUSTOMER'" [(ngModel)]="Quotation.material">
   </mat-form-field>
 
   <h6 class="text-secondary">Sleeve Type</h6>
-  <mat-radio-group [(ngModel)]="sleeveType" [disabled]="mode=='READ'" aria-label="Sleeve Type">
+  <mat-radio-group [(ngModel)]="Quotation.sleeveType" [disabled]="mode=='READ'" aria-label="Sleeve Type">
     <mat-radio-button value="SHORT">Short</mat-radio-button>
     <mat-radio-button class="ml-3" value="LONG">Long</mat-radio-button>
   </mat-radio-group>
 
   <h6 class="text-secondary">Collar Type</h6>
-  <mat-radio-group [(ngModel)]="collarType" [disabled]="mode=='READ'" aria-label="Collar Type">
-    <mat-radio-button value="NOCOLLAR">None</mat-radio-button>
-    <mat-radio-button class="ml-3" value="CHINESECOLLAR">Chinese</mat-radio-button>
+  <mat-radio-group [(ngModel)]="Quotation.collarType" [disabled]="mode=='READ'" aria-label="Collar Type">
+    <mat-radio-button value="NO_COLLAR">None</mat-radio-button>
+    <mat-radio-button class="ml-3" value="CHINESE">Chinese</mat-radio-button>
   </mat-radio-group>
 
   <div class="col-12" id="btn-quotation-request" *ngIf="mode=='INPUT'">
-    <button class="btn btn-danger btn-rounded col-3" style="float: right;">Request</button>
+    <button class="btn btn-danger btn-rounded col-3" style="float: right;" (click)="placeQuotation()">Send Request</button>
   </div>
 
   <div class="col-12" style="height: 10vh;"></div>

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-quotation-form',
@@ -14,6 +13,8 @@ export class QuotationFormComponent implements OnInit {
   @Input() Quotation;
 
   user
+  success;
+  fail;
 
   quotationid:String
   customerid:String
@@ -31,43 +32,50 @@ export class QuotationFormComponent implements OnInit {
   validPeriod:Number
   status:String
 
+
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
+    this.Quotation = {}
     this.user = JSON.parse(localStorage.getItem("user"));
     if(typeof this.user===undefined){
       this.router.navigate(["/"]);
       return;
     }
-    this.customerid = JSON.parse(localStorage.getItem("user"))._id;
+    this.customerid = this.user._id;
     this.designType = "REDCORE_DESIGN"
     this.sleeveType = "SHORT"
-    this.collarType = "NOCOLLAR"
+    this.collarType = "NO_COLLAR"
+    this.success = false;
+    this.fail = false;
   }
+
 
   placeQuotation(){
     let quotation = {
       customerid:this.customerid,
       items:[
         {
-          name:this.name,
-          designURL:this.designURL,
-          designType:this.designType,
-          quantity:this.quantity,
-          material:this.material,
-          collarType:this.collarType,
-          sleeveType:this.sleeveType,
-          price:this.price,
-          status:this.status,
+          name:this.Quotation.name,
+          designURL:this.Quotation.designURL,
+          designType:this.Quotation.designType,
+          quantity:this.Quotation.quantity,
+          material:this.Quotation.material,
+          collarType:this.Quotation.collarType,
+          sleeveType:this.Quotation.sleeveType,
+          price:this.Quotation.price,
+          status:"PENDING",
         }
       ]
     }
 
-    this.http.post<any>('http://localhost:3000/quotation/',quotation,{observe:'response',}).subscribe(data => {
+    this.http.post<any>('http://localhost:3000/quotation/add',quotation,{observe:'response',}).subscribe(data => {
         if(typeof data.body._id !== 'undefined'){
-          console.log(data)
+          this.fail = false;
+          this.success = true;
         }else{
-          console.log("failed")
+          this.success = false;
+          this.fail = true;
         }
       });
   }

@@ -1,48 +1,69 @@
 <img src="{{OrderImageURL}}" *ngIf="mode=='READ'" class="col-6 ml-auto mr-auto" alt="" srcset="">
 <div id="side-content-1" class="example-container" [class.inputMode]="mode=='INPUT'">
+  <h5 class="display-4 text-secondary font-weight-bold" *ngIf="mode=='INPUT'" style="font-size: xx-large;"><span class="text-danger">Red</span><span class="text-dark">Core</span> Order</h5>
+  <small class="text-secondary" *ngIf="mode=='INPUT'">Enter order details below</small>
   <span class="display-4 mb-4">{{Order.name}}</span>
 
   <mat-form-field *ngIf="mode=='READ'">
-    <input matInput placeholder="OrderID" [disabled] = "mode=='READ'" value="{{Order.id}}">
+    <input matInput placeholder="OrderID" [disabled] = "mode=='READ'" [(ngModel)]="Order.id">
   </mat-form-field>
 
   <mat-form-field *ngIf="mode=='READ'">
-    <input matInput placeholder="Status" [disabled] = "mode=='READ'" value="{{Order.status}}">
+    <input matInput placeholder="Status" [disabled] = "mode=='READ'" [(ngModel)]="Order.status">
   </mat-form-field>
 
   <mat-form-field *ngIf="mode=='READ'">
-    <input matInput placeholder="CustomerID" [disabled] = "mode=='READ'" value="{{Order.customerID}}">
+    <input matInput placeholder="CustomerID" [disabled] = "mode=='READ'" [(ngModel)]="Order.customerID">
   </mat-form-field>
 
   <mat-form-field *ngIf="mode=='READ'">
-    <input matInput placeholder="GarmentID" [disabled] = "mode=='READ'" value="{{Order.garmentID}}">
+    <input matInput placeholder="GarmentID" [disabled] = "mode=='READ'" [(ngModel)]="Order.garmentID">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="QuotationID" [disabled] = "mode=='READ'" value="{{Order.quotationID}}">
+    <mat-label>QuotationID</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let qid of QuotationList" [value]="qid">
+        {{qid}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="DesignID" [disabled] = "mode=='READ'" value="{{Order.designID}}">
+    <mat-label>Favorite food</mat-label>
+    <mat-select  name="food">
+      <mat-option *ngFor="let qid of QuotationList" [value]="qid">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Amount" [disabled] = "mode=='READ'" value="{{Order.amount}}">
+    <input matInput placeholder="QuotationID" [disabled] = "mode=='READ'" [(ngModel)]="Order.quotationID">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Price" [disabled] = "mode=='READ'" value="{{Order.price}}">
+    <input matInput placeholder="Amount" [disabled] = "mode=='READ'" [(ngModel)]="Order.amount">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Paid" [disabled] = "mode=='READ'" value="{{Order.paid}}">
+    <input matInput placeholder="Price" [disabled] = "mode=='READ'" [(ngModel)]="Order.price">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Placed Date" [disabled] = "mode=='READ'" value="{{Order.placedDate}}">
+    <input matInput placeholder="Paid" [disabled] = "mode=='READ'" [(ngModel)]="Order.paid">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Due Date" [disabled] = "mode=='READ'" value="{{Order.dueDate}}">
+    <input matInput placeholder="Placed Date" [disabled] = "mode=='READ'" [(ngModel)]="Order.placedDate">
   </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Due Date" [disabled] = "mode=='READ'" [(ngModel)]="Order.dueDate">
+  </mat-form-field>
+
+  <div class="col-12" id="btn-place-order" *ngIf="mode=='INPUT'">
+    <button class="btn btn-danger btn-rounded col-3" style="float: right;" (click)="placeOrder()">Place Order</button>
+  </div>
+
 </div>

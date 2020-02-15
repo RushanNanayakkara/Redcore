@@ -71,7 +71,6 @@ export class OrderComponent implements OnInit {
       const modalRef = this.modalService.open(OrderFormComponent,{ size: 'xl', backdrop: 'static' });
       modalRef.componentInstance.mode = "INPUT";
       modalRef.componentInstance.modalRef = modalRef;
-      modalRef.componentInstance.activeImg = index;
     }
 
     constructor(fb: FormBuilder,private modalService:NgbModal) {
