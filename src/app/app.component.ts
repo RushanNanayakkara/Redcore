@@ -60,6 +60,21 @@ export class AppComponent {
     this.tabStatus[this.prevTab] = false;
     this.tabStatus[tabId] = true;
     this.prevTab = tabId;
+    if(tabId==="DashboardTab"){
+      switch (JSON.parse(localStorage.getItem('user')).type) {
+        case "ADMIN":
+          this.router.navigate(["/adash"]) ;
+          break;
+        case "CUSTOMER":
+          this.router.navigate(["/cdash"]) ;
+          break;
+        case "GARMENT":
+          this.router.navigate(["/gdash"]) ;
+          break;
+        default:
+          break;
+      }
+    }
   }
 
 
