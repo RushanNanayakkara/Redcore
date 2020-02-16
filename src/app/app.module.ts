@@ -52,6 +52,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerAccountComponent } from './account-template/customer-account/customer-account.component';
 import { AccountTemplateComponent } from './account-template/account-template.component';
+import { AdminAccountComponent } from './account-template/admin-account/admin-account.component';
+import { GarmentAccountComponent } from './account-template/garment-account/garment-account.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { AccountTemplateComponent } from './account-template/account-template.co
     PaymentComponent,
     CustomerAccountComponent,
     AccountTemplateComponent,
+    AdminAccountComponent,
+    GarmentAccountComponent,
   ],
   imports: [
     BrowserModule,
