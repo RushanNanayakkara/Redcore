@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { Router } from '@angular/router'
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-garment-dashboard',
@@ -6,13 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./garment-dashboard.component.scss']
 })
 export class GarmentDashboardComponent implements OnInit {
-  chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
-  chartData = [23,43,45,65,78,99,89,32,45,12,56,76]
+  chartMonths = ["March","April","May","June","July","Aug","Sep","Oct","Nov","Dec","Jan","Feb",]
+  chartData = [0,0,0, 0, 0, 0, 0, 0, 0, 0, 17000, 0]
   chartType = "line"
 
   OngoingCount = 10;
   LateOrders = 9;
   QuotationReqCount = 7;
+  user
 
   displayedColumns: string[] = ['OrderID', 'Name', 'GarmentID', 'DueDate'];
   Orders =[
@@ -62,18 +67,31 @@ export class GarmentDashboardComponent implements OnInit {
     "ID","CustomerID","Name","Date"
   ]
 
-  constructor() { }
+  constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) { }
 
   ngOnInit() {
     this.initializeChartData();
+    this.updateCounts();
   }
 
   initializeChartData(){
-    //enter code to get last 12 month revenue data from server and update chart data variable
-  }
+    this.http.get<any>('http://localhost:8081/chartg',{observe:'response',params:{garmentId:this.user.id}}).subscribe(data => {
+      if(data.status==200){
+        
+      }
+  });
+}
 
   updateCounts(){
-    //Enter code here to get the ongoing orders  count, late order count and quotation counts
+    this.http.get<any>('http://localhost:8081/gcount',{observe:'response',params:{garmentId:this.user.id}}).subscribe(data => {
+      if(data.status==200){
+       this.OngoingCount=data.body.ongoing;
+        this.LateOrders=data.body.late;        
+ this.QuotationReqCount=data.body.qutationss;
+console.log(data);
+
+      }
+    });
   }
 
   checkIfNotLate(date){

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { Router } from '@angular/router'
+import { HttpClient } from '@angular/common/http';
+import { TransformVisitor } from '@angular/compiler/src/render3/r3_ast';
+import {Chart} from 'chart.js';
 
 
 // export interface Order {
@@ -14,17 +19,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
+  
+  OngoingCount;
+  LateOrders;
+  QuotationReqCount;
 
-  chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
-  chartData = [23,43,45,65,78,99,89,32,45,12,56,76]
+  
+  chartData = []
   chartType = "line"
-
-  OngoingCount = 10;
-  LateOrders = 9;
-  QuotationReqCount = 7;
+  Linechart:any=[];
+  chartMonths:any=[];
+  post:any=[];
+  count:any=[];
+  correctmonth:any=[];
 
   displayedColumns: string[] = ['OrderID', 'Name', 'GarmentID', 'DueDate'];
-  Orders =[
+  Orders =[ 
     {id:"O001",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
     amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
     {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
@@ -71,18 +81,84 @@ export class AdminDashboardComponent implements OnInit {
     "ID","CustomerID","Name","Date"
   ]
 
-  constructor() { }
+  constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) { 
+   this.chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec","Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
+  }
 
   ngOnInit() {
+    
     this.initializeChart();
+    this.updateCounts();
   }
 
-  initializeChart(){
-    //get last 12 month revenue data from server and update chart data variable
+  initializeChart(){ 
+    this.http.get<any>('http://localhost:8081/chart',{observe:'response',params:{}}).subscribe(data => {
+      if(data.status==200){
+      this.post=data.body;
+      let m=-1;
+      let j=-1;
+      let i=0;
+      for(i=0;i<this.post.length;i+=1){
+        if(this.post[i]==null){
+          m+=1;
+         }else{
+           j+=1;
+           this.count[j]=this.post[i];
+           this.correctmonth[j]=this.chartMonths[i];
+          }
+        }
+        this.Linechart = new Chart('canvas', {            
+              type: 'line',  
+              data: {  
+                    labels: this.correctmonth,                    
+                    datasets: [  
+                      {  
+                        data: this.count, 
+                        label:"Revenue Summary",
+                        backgroundColor:"rgba(121,9,173,0.0)",
+                        borderColor: "purple",
+                        borderWidth: 2,
+                        pointHoverRadius:5,
+                        hoverBackgroundColor:"rgba(250,20,20,0.8)",                  
+                      }  
+                    ]  
+              },  
+              options: {                  
+                  responsive:true,
+                  legend: {  
+                    display: false  
+                  },  
+                  scales: {  
+                      xAxes: [{
+                            display: true ,
+                            ticks: {
+                                fontSize: 20
+                            }
+                        }] ,
+                      yAxes: [{
+                            display: true ,
+                            ticks: {
+                                fontSize: 20
+                            }
+                      }], 
+                  }  ,              
+              }           
+        });  
+      }
+    });
   }
+ 
 
   updateCounts(){
-    //Enter code here to get the ongoing orders  count, late order count and idle garments
+    this.http.get<any>('http://localhost:8081/acount',{observe:'response',params:{}}).subscribe(data => {
+          if(data.status==200){
+           this.OngoingCount=data.body.ongoing;
+            this.LateOrders=data.body.late;        
+     this.QuotationReqCount=data.body.qutationss;
+  // console.log(data);
+
+          }
+        });
   }
 
   removeNotification(id){
