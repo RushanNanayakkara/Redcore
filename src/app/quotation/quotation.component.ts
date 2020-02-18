@@ -102,6 +102,13 @@ export class QuotationComponent implements OnInit {
         this.cdRef.detectChanges();
     }
 
+    deleteQuotation(){
+      // console.log(this.activeQuotation.id)
+      // this.http.delete<any>('http://localhost:3000/quotation/delete',{observe:'response',params:{_id:this.activeQuotation.id}}).subscribe((data)=>{
+      //  console.log(data)
+      // })
+  }
+
     addToTable(quotation){
       let issuedDate;
       if(typeof quotation.items[0].issuedDate==undefined){

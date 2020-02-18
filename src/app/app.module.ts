@@ -52,6 +52,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerAccountComponent } from './account-template/customer-account/customer-account.component';
 import { AccountTemplateComponent } from './account-template/account-template.component';
+import { DeleteOrderConformationComponent } from './delete-order-conformation/delete-order-conformation.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { AccountTemplateComponent } from './account-template/account-template.co
     PaymentComponent,
     CustomerAccountComponent,
     AccountTemplateComponent,
+    DeleteOrderConformationComponent,
   ],
   imports: [
     BrowserModule,
