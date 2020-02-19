@@ -53,6 +53,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerAccountComponent } from './account-template/customer-account/customer-account.component';
 import { AccountTemplateComponent } from './account-template/account-template.component';
 import { DeleteOrderConformationComponent } from './delete-order-conformation/delete-order-conformation.component';
+import { AdminAccountComponent } from './account-template/admin-account/admin-account.component';
+import { GarmentAccountComponent } from './account-template/garment-account/garment-account.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { DeleteOrderConformationComponent } from './delete-order-conformation/de
     CustomerAccountComponent,
     AccountTemplateComponent,
     DeleteOrderConformationComponent,
+    AdminAccountComponent,
+    GarmentAccountComponent,
   ],
   imports: [
     BrowserModule,

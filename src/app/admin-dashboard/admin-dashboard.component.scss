@@ -1,6 +1,17 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
 #chartComponent{
+ 
+  
+}
+canvas{
+  width:  100% !important;
+  height: 50% !important;
+  margin-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
 
 }
+
 
 #ongoingIcon{
   position: relative;

@@ -3,12 +3,18 @@
 <!--REVENUE CHART -->
 <div class="text-secondary ml-4 mt-2 text-left font-weight-bold" style="font-size: larger;">Revenue summary for last 12 months</div>
 <div class="col-10 mr-auto ml-auto">
-  <app-linechart
+  <!-- <app-linechart
     id="chartComponent"
     [lineChartLabels] = 'chartMonths'
     [data]='chartData'
     [type]="chartType"
-  ></app-linechart>
+  ></app-linechart> -->
+  <div >
+    <br>
+ <div class="chartComponent" >    
+     <canvas id="canvas">{{ Linechart }}</canvas>    
+   </div>
+   </div>
 </div>
 
 <!-- SUMMARY DATA ROW -->

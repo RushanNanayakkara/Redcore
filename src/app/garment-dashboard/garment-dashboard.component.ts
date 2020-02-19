@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { Router } from '@angular/router'
+import { HttpClient } from '@angular/common/http';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-garment-dashboard',
@@ -6,13 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./garment-dashboard.component.scss']
 })
 export class GarmentDashboardComponent implements OnInit {
-  chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
-  chartData = [23,43,45,65,78,99,89,32,45,12,56,76]
-  chartType = "line"
 
-  OngoingCount = 10;
-  LateOrders = 9;
-  QuotationReqCount = 7;
+
+  OngoingCount ;
+  LateOrders ;
+  QuotationReqCount ;
+  user
+
+
+  chartData = []
+  chartType = "line"
+  Linechart:any=[];
+  chartMonths:any=[];
+  post:any=[];
+  count:any=[];
+  correctmonth:any=[];
 
   displayedColumns: string[] = ['OrderID', 'Name', 'GarmentID', 'DueDate'];
   Orders =[
@@ -62,18 +74,85 @@ export class GarmentDashboardComponent implements OnInit {
     "ID","CustomerID","Name","Date"
   ]
 
-  constructor() { }
+  constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) {
+    this.chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec","Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
+
+   }
 
   ngOnInit() {
+    this.user=JSON.parse(localStorage.getItem('user'));
     this.initializeChartData();
+    this.updateCounts();
   }
 
   initializeChartData(){
-    //enter code to get last 12 month revenue data from server and update chart data variable
-  }
+    this.http.get<any>('http://localhost:8081/chartg',{observe:'response',params:{garmentId:this.user._id}}).subscribe(data => {
+      if(data.status==200){
+        this.post=data.body;
+        let m=-1;
+        let j=-1;
+        let i=0;
+        for(i=0;i<this.post.length;i+=1){
+          if(this.post[i]==null){
+            m+=1;
+           }else{
+             j+=1;
+             this.count[j]=this.post[i];
+             this.correctmonth[j]=this.chartMonths[i];
+            }
+          }
+          this.Linechart = new Chart('canvas', {
+                type: 'line',
+                data: {
+                      labels: this.correctmonth,
+                      datasets: [
+                        {
+                          data: this.count,
+                          label:"Revenue Summary",
+                          backgroundColor:"rgba(121,9,173,0.0)",
+                          borderColor: "purple",
+                          borderWidth: 2,
+                          pointHoverRadius:5,
+                          hoverBackgroundColor:"rgba(250,20,20,0.8)",
+                        }
+                      ]
+                },
+                options: {
+                    responsive:true,
+                    legend: {
+                      display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                              display: true ,
+                              ticks: {
+                                  fontSize: 20
+                              }
+                          }] ,
+                        yAxes: [{
+                              display: true ,
+                              ticks: {
+                                  fontSize: 20
+                              }
+                        }],
+                    }  ,
+                }
+          });
+
+      }
+  });
+}
 
   updateCounts(){
-    //Enter code here to get the ongoing orders  count, late order count and quotation counts
+    this.http.get<any>('http://localhost:8081/gcount',{observe:'response',params:{garmentId:this.user._id}}).subscribe(data => {
+      if(data.status==200){
+       this.OngoingCount=data.body.ongoing;
+        this.LateOrders=data.body.late;
+ this.QuotationReqCount=data.body.qutationss;
+console.log(data);
+
+      }
+    });
   }
 
   checkIfNotLate(date){
