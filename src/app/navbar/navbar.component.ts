@@ -3,6 +3,7 @@ import {
   faUserCircle,
   faGlobe
  } from '@fortawesome/free-solid-svg-icons';
+ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
   faUserCircle = faUserCircle
   faGlobe = faGlobe
 
-  loggedIn = true;
+  loggedIn
   profile = {
     name:"Rushan Nanayakkara",
     type:"Customer",
@@ -28,12 +29,20 @@ export class NavbarComponent implements OnInit {
     "Test notification 3",
   ]
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
-
+    this.loggedIn = localStorage.getItem('user')!==null
+    if(!this.loggedIn){
+      this.router.navigate(['/']);
+    }
   }
 
+
+  logout(){
+    localStorage.removeItem('user');
+    this.router.navigate(['/']);
+  }
 
 
 }
