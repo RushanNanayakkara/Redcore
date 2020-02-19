@@ -10,9 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CustomerDashboardComponent implements OnInit {
 
-  ongoing_order_count = 5;
-  complete_order_count = 2;
-  quotation_count = 10;
+  ongoing_order_count ;
+  complete_order_count ;
+  quotation_count ;
   user;
   orders = [
     {id: "T001",status: "COMPLETE",date: "07-01-2020",estimatedDelivery:"02-02-2020"},
@@ -34,13 +34,14 @@ export class CustomerDashboardComponent implements OnInit {
   constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
-   
+
    updateCounts(){
-    this.http.get<any>('http://localhost:8081/ccount',{observe:'response',params:{userId:this.user.id}}).subscribe(data => {
+    this.http.get<any>('http://localhost:8081/ccount',{observe:'response',params:{userId:this.user._id}}).subscribe(data => {
       if(data.status==200){
        this.ongoing_order_count=data.body.ongoing;
-        this.complete_order_count=data.body.completes;        
+        this.complete_order_count=data.body.completes;
       this.quotation_count=data.body.qutations;
        console.log(data);
 
