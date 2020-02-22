@@ -8,6 +8,14 @@ import {} from 'googlemaps';
 })
 export class RedcoreNetworkComponent implements OnInit {
 
+  NodeCount = 3;
+  ActiveCount = 2;
+  IdleCount = 1;
+  OrderCount = 5;
+  OrdersPerNode = 1;
+  RevPerNode = 23000;
+
+
   @ViewChild('map',{static:true}) mapElement: any;
   map: google.maps.Map;
   myLatLngList = {

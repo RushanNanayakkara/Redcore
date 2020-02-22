@@ -23,6 +23,10 @@ export class AdminDashboardComponent implements OnInit {
   OngoingCount;
   LateOrders;
   QuotationReqCount;
+  NotificationTitle;
+  NotificationTarget;
+  NotificationBody;
+
 
 
   chartData = []
@@ -34,22 +38,16 @@ export class AdminDashboardComponent implements OnInit {
   correctmonth:any=[];
 
   displayedColumns: string[] = ['OrderID', 'Name', 'GarmentID', 'DueDate'];
-  Orders :any=[
-     {id:" ",name:" ",customerID:"C001",garmentID:" ",designID:" ",quotationID:"Q001",
-     amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"}
-    // {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    // amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-01-2020",status:"ONGOING"},
-    // {id:"O003",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    // amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
+  Orders =[
+    {id:"O001",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
+    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
+    {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
+    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-01-2020",status:"ONGOING"},
+    {id:"O003",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
+    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
   ]
 
-  Notifications = [
-    {id:"N001", title:"Notification title 1", body:"Notification body 1. This is a test notification body"},
-    {id:"N002", title:"Notification title 2", body:"Notification body 2. This is a test notification body"},
-    {id:"N003", title:"Notification title 3", body:"Notification body 3. This is a test notification body"},
-    {id:"N004", title:"Notification title 4", body:"Notification body 4. This is a test notification body"},
-    {id:"N005", title:"Notification title 5", body:"Notification body 5. This is a test notification body"},
-  ]
+  Notifications = []
 
   redcoreNetworkTableData=[
     {id:"G001",name:"Base Printers",ongoingCount:1,dueSoonCount:3,lateCount:1,status:"BUSY"}
@@ -89,18 +87,8 @@ export class AdminDashboardComponent implements OnInit {
 
     this.initializeChart();
     this.updateCounts();
-    this.getorders();
+    this.loadNotifications()
   }
-
-  getorders(){
-    this.http.get<any>('http://localhost:8081/getorders',{observe:'response',params:{}}).subscribe(data => {
-      if(data.status==200){
-
-
-      }
-    })
-  }
-
 
   initializeChart(){
     this.http.get<any>('http://localhost:8081/chart',{observe:'response',params:{}}).subscribe(data => {
@@ -163,6 +151,7 @@ export class AdminDashboardComponent implements OnInit {
   updateCounts(){
     this.http.get<any>('http://localhost:8081/acount',{observe:'response',params:{}}).subscribe(data => {
           if(data.status==200){
+            // console.log("reached",data.body);
            this.OngoingCount=data.body.ongoing;
             this.LateOrders=data.body.late;
      this.QuotationReqCount=data.body.qutationss;
@@ -172,23 +161,53 @@ export class AdminDashboardComponent implements OnInit {
         });
   }
 
+  loadNotifications(){
+    this.Notifications = []
+    this.http.get<any>("http://localhost:8800/notification/get",{observe:"response"}).subscribe(response=>{
+      if(typeof response.body!== undefined ){
+        response.body.forEach(notificationObject => {
+          this.Notifications.push({
+            id: notificationObject._id,
+            title:notificationObject.title,
+            body: notificationObject.body
+          })
+        });
+      }else{
+        console.log("load notification failed")
+      }
+    })
+  }
+
+  addNotificaton(){
+    let tempNotificationObj= {
+      type:"",
+      date: Date.now(),
+      status: "NOTREAD",
+      title: this.NotificationTitle,
+      body:this.NotificationBody
+    }
+
+    if(this.NotificationTarget=='CUSTOMER'){
+      tempNotificationObj.type = "CUSTOMERGLOBAL";
+    }else if(this.NotificationTarget=="GARMENT"){
+      tempNotificationObj.type = "GARMENTGLOBAL";
+    }else{
+      tempNotificationObj.type = "GLOBAL";
+    }
+
+    this.http.post<any>("http://localhost:8800/notification/add",tempNotificationObj,{observe:'response'}).subscribe(response=>{
+      if(typeof response.body._id !==undefined){
+        alert("Notification added successfully")
+      }else{
+        alert("Failed to add notification")
+      }
+    })
+  }
+
   removeNotification(id){
     //Enter code to remove notification with the given input here
     //Update the notifications list
     console.log(id + " removed")
-  }
-
-  addNotificaton(title,body,target){
-    if(target=='CUSTOMER'){
-      //Add new notification for customers
-      console.log("customer notification")
-    }else if(target=="GARMENT"){
-      //Add new notification for garments
-      console.log("garment notification")
-    }else{
-      //Add new notification for all
-      console.log("global notification")
-    }
   }
 
   checkIfNotLate(date){

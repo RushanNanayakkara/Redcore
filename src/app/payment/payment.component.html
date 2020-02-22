@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="display-4 text-secondary"><small>Payment Manager</small></div>
+    <div id="payment-form" class="col-6 ml-4 mr-auto row ">
+        <div class="col-12 mt-5 bg-white p-3">
+            <h4 class="ml-4 text-secondary">Add Payment</h4>
+
+            <div id="warning-div" class="alert alert-danger">
+                payment already done
+              </div>
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Order ID</mat-label>
+                <input matInput placeholder="001" value="" [(ngModel)]="valOrderID">
+              </mat-form-field>
+
+            <div class="col-5"></div>
+
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Customer ID</mat-label>
+                <input matInput placeholder="001" value="" [(ngModel)]="valCustomerID">
+              </mat-form-field>
+
+            <div class="col-5"></div> 
+
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Amount</mat-label>
+                <input type="number" matInput placeholder="Rs." value="" [(ngModel)]="valAmount">
+              </mat-form-field>
+
+            <div class="col-5"></div>
+
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Payment Type</mat-label>
+                <input matInput placeholder="" value="{{valType}}">
+              </mat-form-field>
+
+            <div class="col-5"></div> 
+
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Date</mat-label>
+                <input type="date" matInput placeholder="" value="" [(ngModel)]="valDate">
+              </mat-form-field>
+
+              <div class="col-5"></div>
+
+            <mat-form-field class="example-full-width col-12">
+                <mat-label>Customer Name</mat-label>
+                <input matInput placeholder="001" value="" [(ngModel)]="valCustomerName">
+              </mat-form-field>
+
+            <div class="col-12">
+                <button class="btn btn-danger btn-rounded p-2 float-right" (click)="addPayment()">Add Payment</button>
+            </div>
+            <div ></div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <h4 class="ml-4 display-4" style="font-size: xx-large;">All payments</h4>
+        <table mat-table [dataSource]="payments" class="mat-elevation-z8 col-12 ml-4">
+
+
+            <ng-container matColumnDef="OID">
+              <th mat-header-cell *matHeaderCellDef> Order ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.OID}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="CID">
+              <th mat-header-cell *matHeaderCellDef> Customer ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.CID}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="Amount">
+              <th mat-header-cell *matHeaderCellDef> Amount </th>
+              <td mat-cell *matCellDef="let element"> {{element.Amount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="PaymentType">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.PaymentType}} </td>
+              </ng-container>
+
+            <ng-container matColumnDef="Date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+              </ng-container>
+
+            <ng-container matColumnDef="CustomerName">
+                <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.CustomerName}} </td>
+              </ng-container>
+              
+            <ng-container matColumnDef="button"> 
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> <button class="btn btn-danger btn-rounded btn-small p-1" (click)="deletePayment(element._id)">Delete</button> </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+
+</div>
