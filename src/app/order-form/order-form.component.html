@@ -15,7 +15,7 @@
   <span class="mb-4" style="font-size: x-large;" *ngIf="mode=='READ'" >{{Order.name}}</span>
 
   <mat-form-field>
-    <input matInput placeholder="Order Name" [disabled] = "mode=='READ'" [(ngModel)]="Order.name">
+    <input matInput placeholder="Order Name"   [(ngModel)]="Order.name">
   </mat-form-field>
 
   <mat-form-field>

@@ -38,9 +38,11 @@ export class AppComponent {
   ]
 
   DashboardLink;
+  user;
 
   constructor(private router:Router){
-
+    this.user = localStorage.getItem('user');
+    console.log(this.user)
   }
 
   setActiveTab(tabId) {
