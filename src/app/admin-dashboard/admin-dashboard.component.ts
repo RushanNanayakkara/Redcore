@@ -19,12 +19,12 @@ import {Chart} from 'chart.js';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
-  
+
   OngoingCount;
   LateOrders;
   QuotationReqCount;
 
-  
+
   chartData = []
   chartType = "line"
   Linechart:any=[];
@@ -34,13 +34,13 @@ export class AdminDashboardComponent implements OnInit {
   correctmonth:any=[];
 
   displayedColumns: string[] = ['OrderID', 'Name', 'GarmentID', 'DueDate'];
-  Orders =[ 
-    {id:"O001",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
-    {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-01-2020",status:"ONGOING"},
-    {id:"O003",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
+  Orders :any=[
+     {id:" ",name:" ",customerID:"C001",garmentID:" ",designID:" ",quotationID:"Q001",
+     amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"}
+    // {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
+    // amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-01-2020",status:"ONGOING"},
+    // {id:"O003",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
+    // amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
   ]
 
   Notifications = [
@@ -81,17 +81,28 @@ export class AdminDashboardComponent implements OnInit {
     "ID","CustomerID","Name","Date"
   ]
 
-  constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) { 
+  constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) {
    this.chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec","Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
   }
 
   ngOnInit() {
-    
+
     this.initializeChart();
     this.updateCounts();
+    this.getorders();
   }
 
-  initializeChart(){ 
+  getorders(){
+    this.http.get<any>('http://localhost:8081/getorders',{observe:'response',params:{}}).subscribe(data => {
+      if(data.status==200){
+
+
+      }
+    })
+  }
+
+
+  initializeChart(){
     this.http.get<any>('http://localhost:8081/chart',{observe:'response',params:{}}).subscribe(data => {
       if(data.status==200){
       this.post=data.body;
@@ -107,28 +118,28 @@ export class AdminDashboardComponent implements OnInit {
            this.correctmonth[j]=this.chartMonths[i];
           }
         }
-        this.Linechart = new Chart('canvas', {            
-              type: 'line',  
-              data: {  
-                    labels: this.correctmonth,                    
-                    datasets: [  
-                      {  
-                        data: this.count, 
+        this.Linechart = new Chart('canvas', {
+              type: 'line',
+              data: {
+                    labels: this.correctmonth,
+                    datasets: [
+                      {
+                        data: this.count,
                         label:"Revenue Summary",
                         backgroundColor:"rgba(121,9,173,0.0)",
                         borderColor: "purple",
                         borderWidth: 2,
                         pointHoverRadius:5,
-                        hoverBackgroundColor:"rgba(250,20,20,0.8)",                  
-                      }  
-                    ]  
-              },  
-              options: {                  
+                        hoverBackgroundColor:"rgba(250,20,20,0.8)",
+                      }
+                    ]
+              },
+              options: {
                   responsive:true,
-                  legend: {  
-                    display: false  
-                  },  
-                  scales: {  
+                  legend: {
+                    display: false
+                  },
+                  scales: {
                       xAxes: [{
                             display: true ,
                             ticks: {
@@ -140,20 +151,20 @@ export class AdminDashboardComponent implements OnInit {
                             ticks: {
                                 fontSize: 20
                             }
-                      }], 
-                  }  ,              
-              }           
-        });  
+                      }],
+                  }  ,
+              }
+        });
       }
     });
   }
- 
+
 
   updateCounts(){
     this.http.get<any>('http://localhost:8081/acount',{observe:'response',params:{}}).subscribe(data => {
           if(data.status==200){
            this.OngoingCount=data.body.ongoing;
-            this.LateOrders=data.body.late;        
+            this.LateOrders=data.body.late;
      this.QuotationReqCount=data.body.qutationss;
   // console.log(data);
 

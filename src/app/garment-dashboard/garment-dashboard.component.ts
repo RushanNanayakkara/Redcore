@@ -28,12 +28,12 @@ export class GarmentDashboardComponent implements OnInit {
 
   displayedColumns: string[] = ['OrderID', 'Name', 'GarmentID', 'DueDate'];
   Orders =[
-    {id:"O001",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
-    {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-01-2020",status:"ONGOING"},
-    {id:"O003",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
-    amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
+    {id:"",name:"",customerID:"",garmentID:"",designID:"",quotationID:"",
+     amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"",status:"ONGOING"}
+    // {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
+    // amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-01-2020",status:"ONGOING"},
+    // {id:"O003",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
+    // amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
   ]
 
   Notifications = [
@@ -81,13 +81,25 @@ export class GarmentDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.user=JSON.parse(localStorage.getItem('user'));
-    this.initializeChartData();
+    console.log(this.user)
+    this.initializeChartData();``
     this.updateCounts();
+    this.getorders();5
   }
 
-  initializeChartData(){
-    this.http.get<any>('http://localhost:8081/chartg',{observe:'response',params:{garmentId:this.user._id}}).subscribe(data => {
+  getorders(){
+    console.log(this.user._id)
+    this.http.get<any>('http://localhost:8081/getordersg',{observe:'response',params:{garmentid:this.user._id}}).subscribe(data => {
       if(data.status==200){
+       console.log(data);
+
+      }
+    })
+  }
+  initializeChartData(){
+    this.http.get<any>('http://localhost:8081/chartg',{observe:'response',params:{garmentid:this.user._id}}).subscribe(data => {
+      if(data.status==200){
+        console.log(data);
         this.post=data.body;
         let m=-1;
         let j=-1;
@@ -144,12 +156,13 @@ export class GarmentDashboardComponent implements OnInit {
 }
 
   updateCounts(){
-    this.http.get<any>('http://localhost:8081/gcount',{observe:'response',params:{garmentId:this.user._id}}).subscribe(data => {
+    this.http.get<any>('http://localhost:8081/gcount',{observe:'response',params:{id:this.user._id}}).subscribe(data => {
       if(data.status==200){
-       this.OngoingCount=data.body.ongoing;
+        console.log(data);
+        this.OngoingCount=data.body.ongoing;
         this.LateOrders=data.body.late;
- this.QuotationReqCount=data.body.qutationss;
-console.log(data);
+        this.QuotationReqCount=data.body.qutationss;
+        console.log(data);
 
       }
     });
