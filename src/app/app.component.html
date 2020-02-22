@@ -38,6 +38,11 @@
       <fa-icon [icon]="faNetworkWired" class="mr-2"></fa-icon>
       Redcore Network
     </div>
+    <div id="Payment" routerLink="/payment" class="navmenuitem" (click)="setActiveTab('Payment')" [ngClass]="tabStatus['Payment']==true? 'selected':'navmenuitem'" >
+      <div class="selector"></div>
+      <fa-icon [icon]="dollarSign" class="mr-2"></fa-icon>
+      Payment
+    </div>
     <div id="ContactUsTab" routerLink="/about" class="navmenuitem" (click)="setActiveTab('ContactUsTab')" [ngClass]="tabStatus['ContactUsTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <fa-icon [icon]="faAddressCard" class="mr-2"></fa-icon>

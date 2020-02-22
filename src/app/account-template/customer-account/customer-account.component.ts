@@ -25,6 +25,19 @@ export class CustomerAccountComponent implements OnInit {
     }
   }
 
+  updateAccount(){
+    this.http.patch<any>('http://localhost:3100/api/v1/users/update',this.user,{observe:'response',}).subscribe(data => {
+        if(typeof data.body._id !== 'undefined'){
+          localStorage.setItem("user",JSON.stringify(data.body));
+          this.fail = false;
+          this.success = true;
+        }else{
+          document.getElementById("warning-div").classList.add("d-block")
+          this.fail = false;
+          this.success = true;
+        }
+        this.user = JSON.parse(localStorage.getItem("user"));
+      })
   validate(){
     let status = true;
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email)){

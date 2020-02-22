@@ -35,11 +35,15 @@ export class CustomerDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user"));
+    console.log(this.user._id);
+this. updateCounts();
+
   }
 
    updateCounts(){
-    this.http.get<any>('http://localhost:8081/ccount',{observe:'response',params:{userId:this.user._id}}).subscribe(data => {
+    this.http.get<any>('http://localhost:8081/ccount/',{observe:'response',params:{customerid:this.user._id}}).subscribe(data => {
       if(data.status==200){
+
        this.ongoing_order_count=data.body.ongoing;
         this.complete_order_count=data.body.completes;
       this.quotation_count=data.body.qutations;

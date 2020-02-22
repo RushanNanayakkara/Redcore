@@ -27,7 +27,7 @@ export class AppComponent {
 
   title = 'Redcore-Client-Final';
   prevTab = "DashboardTab"
-  tabStatus = {"DashboardTab":true,"DesignerTab":false,"ProductGalleryTab":false,"OrdersTab":false,"QuotationTab":false,"AccountTab":false,"RedcoreNetworkTab":false,"ContactUsTab":false};
+  tabStatus = {"DashboardTab":true,"DesignerTab":false,"ProductGalleryTab":false,"OrdersTab":false,"QuotationTab":false,"AccountTab":false,"RedcoreNetworkTab":false,"ContactUsTab":false,"Payment":false};
   noTemplateRoutes = [,
     '/',
     '/register',

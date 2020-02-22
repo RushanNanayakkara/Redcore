@@ -19,7 +19,7 @@ export class EmailVerificationComponent implements OnInit {
   resendEmail(){
     const id = JSON.parse(localStorage.getItem('user'))._id;
     this.http.get<any>('http://localhost:3100/api/v1/users/sendVerificationEmail',{observe:'response',params:{_id:id}}).subscribe(data => {
-        if(data.status>=200 && data.status<400){
+        if(data.status==200){
           alert("Email sent")
         }else{
           alert("Failed")
@@ -29,7 +29,7 @@ export class EmailVerificationComponent implements OnInit {
 
   verify(u_key){
     const user = JSON.parse(localStorage.getItem('user'));
-    this.http.get<any>('http://localhost:3000/users/verify',{observe:'response',params:{_id:user._id, key:u_key}}).subscribe(data => {
+    this.http.get<any>('http://localhost:3100/api/v1/users/verify',{observe:'response',params:{id:user._id, key:u_key}}).subscribe(data => {
         if(data.body=="SUCCESS"){
           if(user.type=="CUSTOMER"){
             this.router.navigate(['/cdash']);
