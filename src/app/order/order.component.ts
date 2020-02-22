@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit {
   displayedColumns = ["ID","Name","CustomerID","GarmentID","Due Date","Status"];
 
   loadTableData(){
-    this.http.get<any>('http://localhost:3000/order/all',{observe:'response',params:{customer_id:this.user._id}}).subscribe(data => { //sub-wait till res comes
+    this.http.get<any>('http://localhost:3000/order/all',{observe:'response',params:{customer_id:this.user._id}}).subscribe(data => { 
           if(data.status==200){
             this.Orders = [];
             data.body.forEach(element => {

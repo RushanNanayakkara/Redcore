@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
       type:this.type,
     }
     if(this.validate()){
-      this.http.post<any>('http://localhost:3000/users/signUp',user,{observe:'response',}).subscribe(data => {
+      this.http.post<any>('http://localhost:3100/api/v1/users/signup',user,{observe:'response',}).subscribe(data => {
         if(typeof data.body._id !== 'undefined'){
           localStorage.setItem("user",JSON.stringify(data.body));
           this.router.navigate(["emailverification"]);

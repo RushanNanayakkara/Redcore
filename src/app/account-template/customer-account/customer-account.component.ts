@@ -24,7 +24,7 @@ export class CustomerAccountComponent implements OnInit {
   }
 
   updateAccount(){
-    this.http.patch<any>('http://localhost:3000/users/update',this.user,{observe:'response',}).subscribe(data => {
+    this.http.patch<any>('http://localhost:3100/api/v1/users/update',this.user,{observe:'response',}).subscribe(data => {
         if(typeof data.body._id !== 'undefined'){
           localStorage.setItem("user",JSON.stringify(data.body));
           this.fail = false;
