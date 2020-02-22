@@ -22,7 +22,7 @@ export class MydesignsComponent implements OnInit {
 
   ]
 
-  designerURL = 'http://localhost:8080/';
+  designerURL = 'http://127.0.0.1:5501/Redcoredesigner3D.html';
 
   constructor() { }
 

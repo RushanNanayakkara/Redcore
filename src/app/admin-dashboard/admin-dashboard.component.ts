@@ -19,12 +19,15 @@ import {Chart} from 'chart.js';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
-  
+
   OngoingCount;
   LateOrders;
   QuotationReqCount;
+  NotificationTitle;
+  NotificationTarget;
+  NotificationBody;
 
-  
+
   chartData = []
   chartType = "line"
   Linechart:any=[];
@@ -34,7 +37,7 @@ export class AdminDashboardComponent implements OnInit {
   correctmonth:any=[];
 
   displayedColumns: string[] = ['OrderID', 'Name', 'GarmentID', 'DueDate'];
-  Orders =[ 
+  Orders =[
     {id:"O001",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
     amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
     {id:"O002",name:"Order 1",customerID:"C001",garmentID:"G001",designID:"D001",quotationID:"Q001",
@@ -43,13 +46,7 @@ export class AdminDashboardComponent implements OnInit {
     amount:100,price:100000,paid:35000,placedDate:"06-08-2020",dueDate:"08-08-2020",status:"ONGOING"},
   ]
 
-  Notifications = [
-    {id:"N001", title:"Notification title 1", body:"Notification body 1. This is a test notification body"},
-    {id:"N002", title:"Notification title 2", body:"Notification body 2. This is a test notification body"},
-    {id:"N003", title:"Notification title 3", body:"Notification body 3. This is a test notification body"},
-    {id:"N004", title:"Notification title 4", body:"Notification body 4. This is a test notification body"},
-    {id:"N005", title:"Notification title 5", body:"Notification body 5. This is a test notification body"},
-  ]
+  Notifications = []
 
   redcoreNetworkTableData=[
     {id:"G001",name:"Base Printers",ongoingCount:1,dueSoonCount:3,lateCount:1,status:"BUSY"}
@@ -81,17 +78,18 @@ export class AdminDashboardComponent implements OnInit {
     "ID","CustomerID","Name","Date"
   ]
 
-  constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) { 
+  constructor(private modalService:NgbModal, private router: Router,private http: HttpClient) {
    this.chartMonths = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec","Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
   }
 
   ngOnInit() {
-    
+
     this.initializeChart();
     this.updateCounts();
+    this.loadNotifications()
   }
 
-  initializeChart(){ 
+  initializeChart(){
     this.http.get<any>('http://localhost:8081/chart',{observe:'response',params:{}}).subscribe(data => {
       if(data.status==200){
       this.post=data.body;
@@ -107,28 +105,28 @@ export class AdminDashboardComponent implements OnInit {
            this.correctmonth[j]=this.chartMonths[i];
           }
         }
-        this.Linechart = new Chart('canvas', {            
-              type: 'line',  
-              data: {  
-                    labels: this.correctmonth,                    
-                    datasets: [  
-                      {  
-                        data: this.count, 
+        this.Linechart = new Chart('canvas', {
+              type: 'line',
+              data: {
+                    labels: this.correctmonth,
+                    datasets: [
+                      {
+                        data: this.count,
                         label:"Revenue Summary",
                         backgroundColor:"rgba(121,9,173,0.0)",
                         borderColor: "purple",
                         borderWidth: 2,
                         pointHoverRadius:5,
-                        hoverBackgroundColor:"rgba(250,20,20,0.8)",                  
-                      }  
-                    ]  
-              },  
-              options: {                  
+                        hoverBackgroundColor:"rgba(250,20,20,0.8)",
+                      }
+                    ]
+              },
+              options: {
                   responsive:true,
-                  legend: {  
-                    display: false  
-                  },  
-                  scales: {  
+                  legend: {
+                    display: false
+                  },
+                  scales: {
                       xAxes: [{
                             display: true ,
                             ticks: {
@@ -140,20 +138,21 @@ export class AdminDashboardComponent implements OnInit {
                             ticks: {
                                 fontSize: 20
                             }
-                      }], 
-                  }  ,              
-              }           
-        });  
+                      }],
+                  }  ,
+              }
+        });
       }
     });
   }
- 
+
 
   updateCounts(){
     this.http.get<any>('http://localhost:8081/acount',{observe:'response',params:{}}).subscribe(data => {
           if(data.status==200){
+            // console.log("reached",data.body);
            this.OngoingCount=data.body.ongoing;
-            this.LateOrders=data.body.late;        
+            this.LateOrders=data.body.late;
      this.QuotationReqCount=data.body.qutationss;
   // console.log(data);
 
@@ -161,23 +160,53 @@ export class AdminDashboardComponent implements OnInit {
         });
   }
 
+  loadNotifications(){
+    this.Notifications = []
+    this.http.get<any>("http://localhost:8800/notification/get",{observe:"response"}).subscribe(response=>{
+      if(typeof response.body!== undefined ){
+        response.body.forEach(notificationObject => {
+          this.Notifications.push({
+            id: notificationObject._id,
+            title:notificationObject.title,
+            body: notificationObject.body
+          })
+        });
+      }else{
+        console.log("load notification failed")
+      }
+    })
+  }
+
+  addNotificaton(){
+    let tempNotificationObj= {
+      type:"",
+      date: Date.now(),
+      status: "NOTREAD",
+      title: this.NotificationTitle,
+      body:this.NotificationBody
+    }
+
+    if(this.NotificationTarget=='CUSTOMER'){
+      tempNotificationObj.type = "CUSTOMERGLOBAL";
+    }else if(this.NotificationTarget=="GARMENT"){
+      tempNotificationObj.type = "GARMENTGLOBAL";
+    }else{
+      tempNotificationObj.type = "GLOBAL";
+    }
+
+    this.http.post<any>("http://localhost:8800/notification/add",tempNotificationObj,{observe:'response'}).subscribe(response=>{
+      if(typeof response.body._id !==undefined){
+        alert("Notification added successfully")
+      }else{
+        alert("Failed to add notification")
+      }
+    })
+  }
+
   removeNotification(id){
     //Enter code to remove notification with the given input here
     //Update the notifications list
     console.log(id + " removed")
-  }
-
-  addNotificaton(title,body,target){
-    if(target=='CUSTOMER'){
-      //Add new notification for customers
-      console.log("customer notification")
-    }else if(target=="GARMENT"){
-      //Add new notification for garments
-      console.log("garment notification")
-    }else{
-      //Add new notification for all
-      console.log("global notification")
-    }
   }
 
   checkIfNotLate(date){

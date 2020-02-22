@@ -11,8 +11,8 @@
   ></app-linechart> -->
   <div >
     <br>
- <div class="chartComponent" >    
-     <canvas id="canvas">{{ Linechart }}</canvas>    
+ <div class="chartComponent" >
+     <canvas id="canvas">{{ Linechart }}</canvas>
    </div>
    </div>
 </div>
@@ -237,23 +237,22 @@
         <h5 class="d-block p-2">Add New Notification</h5>
         <mat-form-field class="col-8">
           <mat-label>Notification Title</mat-label>
-          <input #inputNotificationTitle matInput placeholder="Notification Title" value="">
+          <input #inputNotificationTitle matInput placeholder="Notification Title" [(ngModel)]="NotificationTitle" >
         </mat-form-field>
         <mat-form-field class="col-5">
           <mat-label>Target</mat-label>
-          <mat-select #notificationTarget>
-            <mat-option *ngFor="let target of ['GARMENT','CUSTOMER','ALL']" [value]="target">
+          <mat-select #notificationTarget [(ngModel)]="NotificationTarget">
+            <mat-option *ngFor="let target of ['GARMENT','CUSTOMER','ALL']" value="{{target}}" >
               {{target}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="col-10 ml-auto mr-auto">
           <mat-label>Enter notification body</mat-label>
-          <textarea #inputNotificationBody matInput placeholder="Enter multiline notification here"></textarea>
+          <textarea #inputNotificationBody matInput placeholder="Enter multiline notification here" [(ngModel)]="NotificationBody"></textarea>
         </mat-form-field>
-        <button class="col-3 btn btn-danger float-right mr-2" (click)="addNotificaton(inputNotificationTitle.value,inputNotificationBody.value,notificationTarget.value)">Publish</button>
+        <button class="col-3 btn btn-danger float-right mr-2" (click)="addNotificaton()">Publish</button>
        </div>
     </div>
   </mat-expansion-panel>
 </div>
-

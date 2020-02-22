@@ -48,10 +48,10 @@
   </mat-form-field>
   <div class="col-6"></div>
   <mat-form-field class="col-4">
-    <input  matInput type="password" placeholder="New Password">
+    <input  matInput type="password" placeholder="New Password" [(ngModel)]="newPassword">
   </mat-form-field>
   <mat-form-field class="col-4">
-    <input  matInput type="password"  placeholder="Repeat Password">
+    <input  matInput type="password"  placeholder="Repeat Password" [(ngModel)]="newPasswordRepeat">
   </mat-form-field>
   <div class="col-12"><button class="btn btn-rounded btn-secondary float-left btn-sm">Change Password</button></div>
 
