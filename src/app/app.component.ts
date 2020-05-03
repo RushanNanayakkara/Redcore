@@ -6,7 +6,9 @@ import {
   faFileInvoiceDollar,
   faUser,
   faNetworkWired,
-  faAddressCard
+  faAddressCard,
+  faBell,
+  faDollarSign
  } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -19,15 +21,17 @@ export class AppComponent {
   //FONTAWSOME ICONS
   faCoffee = faCoffee;
   faCartArrowDown = faCartArrowDown
-  faFileInvoiceDollar=faFileInvoiceDollar
+  faFileInvoiceDollar = faFileInvoiceDollar
   faUser = faUser
   faNetworkWired = faNetworkWired
   faAddressCard = faAddressCard
+  bell = faBell;
+  dollarSign = faDollarSign;
 
 
   title = 'Redcore-Client-Final';
-  prevTab = "DashboardTab"
-  tabStatus = {"DashboardTab":true,"DesignerTab":false,"ProductGalleryTab":false,"OrdersTab":false,"QuotationTab":false,"AccountTab":false,"RedcoreNetworkTab":false,"ContactUsTab":false,"Payment":false};
+  prevTab = 'DashboardTab'
+  tabStatus = {'DashboardTab': true, 'DesignerTab': false, 'ProductGalleryTab': false, 'OrdersTab': false, 'QuotationTab': false, 'AccountTab': false, 'RedcoreNetworkTab': false, 'ContactUsTab': false, 'Payment': false};
   noTemplateRoutes = [,
     '/',
     '/register',
@@ -40,7 +44,7 @@ export class AppComponent {
   DashboardLink;
   user;
 
-  constructor(private router:Router){
+  constructor(private router: Router){
     this.user = localStorage.getItem('user');
     console.log(this.user)
   }
@@ -49,20 +53,28 @@ export class AppComponent {
     this.tabStatus[this.prevTab] = false;
     this.tabStatus[tabId] = true;
     this.prevTab = tabId;
-    if(tabId==="DashboardTab"){
+    if (tabId === 'DashboardTab'){
       switch (JSON.parse(localStorage.getItem('user')).type) {
-        case "ADMIN":
-          this.router.navigate(["/adash"]) ;
+        case 'ADMIN':
+          this.router.navigate(['/adash']) ;
           break;
-        case "CUSTOMER":
-          this.router.navigate(["/cdash"]) ;
+        case 'CUSTOMER':
+          this.router.navigate(['/cdash']) ;
           break;
-        case "GARMENT":
-          this.router.navigate(["/gdash"]) ;
+        case 'GARMENT':
+          this.router.navigate(['/gdash']) ;
           break;
         default:
           break;
       }
+    }
+  }
+
+  notificationVisibale(){
+    if (JSON.parse(localStorage.getItem('user')).type === 'ADMIN'){
+      return true;
+    } else {
+      return false;
     }
   }
 }

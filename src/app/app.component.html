@@ -43,6 +43,12 @@
       <fa-icon [icon]="dollarSign" class="mr-2"></fa-icon>
       Payment
     </div>
+    <div id="Payment" routerLink="/notification" class="navmenuitem" *ngIf="notificationVisibale()" (click)="setActiveTab('notification')"
+      [ngClass]="tabStatus['notification']==true? 'selected':'navmenuitem'">
+      <div class="selector"></div>
+      <fa-icon [icon]="bell" class="mr-2"></fa-icon>
+      notification
+    </div>
     <div id="ContactUsTab" routerLink="/about" class="navmenuitem" (click)="setActiveTab('ContactUsTab')" [ngClass]="tabStatus['ContactUsTab']==true? 'selected':'navmenuitem'" >
       <div class="selector"></div>
       <fa-icon [icon]="faAddressCard" class="mr-2"></fa-icon>

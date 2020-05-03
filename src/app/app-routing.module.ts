@@ -19,29 +19,32 @@ import { PaymentComponent } from './payment/payment.component';
 import { AccountTemplateComponent } from './account-template/account-template.component';
 import { AdminAccountComponent } from './account-template/admin-account/admin-account.component';
 import { GarmentAccountComponent } from './account-template/garment-account/garment-account.component';
+import { NotificationComponent } from './notification/notification.component';
+
 
 
 const routes: Routes = [
-  {path:'', component:LoginComponent},
-  {path:'login', component:LoginComponent},
-  {path:'navbar', component:NavbarComponent},
-  {path:'sidemenu', component:SidemenuComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'mydesigns', component:MydesignsComponent},
-  {path:'emailverification', component:EmailVerificationComponent},
-  {path:'passwordrecovery', component:RecoverPasswordComponent},
-  {path:'about', component:AboutComponent},
-  {path:'gallery', component:ProductGalleryComponent},
-  {path:'cdash', component:CustomerDashboardComponent},
-  {path:'adash', component:AdminDashboardComponent},
-  {path:'gdash', component:GarmentDashboardComponent},
-  {path:'quotation', component:QuotationComponent},
-  {path:'order', component:OrderComponent},
-  {path:'redcorenetwork', component:RedcoreNetworkComponent},
-  {path:'payment', component:PaymentComponent},
-  {path:'account', component:AccountTemplateComponent},
-  {path:'adminaccount',component:AdminAccountComponent},
-  {path:'garmentaccount',component:GarmentAccountComponent},
+  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'navbar', component: NavbarComponent},
+  {path: 'sidemenu', component: SidemenuComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'mydesigns', component: MydesignsComponent},
+  {path: 'emailverification', component: EmailVerificationComponent},
+  {path: 'passwordrecovery', component: RecoverPasswordComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'gallery', component: ProductGalleryComponent},
+  {path: 'cdash', component: CustomerDashboardComponent},
+  {path: 'adash', component: AdminDashboardComponent},
+  {path: 'gdash', component: GarmentDashboardComponent},
+  {path: 'quotation', component: QuotationComponent},
+  {path: 'order', component: OrderComponent},
+  {path: 'redcorenetwork', component: RedcoreNetworkComponent},
+  {path: 'payment', component: PaymentComponent},
+  {path: 'account', component: AccountTemplateComponent},
+  {path: 'adminaccount', component: AdminAccountComponent},
+  {path: 'garmentaccount', component: GarmentAccountComponent},
+  {path: 'notification', component: NotificationComponent },
 ];
 
 @NgModule({

@@ -15,17 +15,17 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient,private router:Router) { }
 
   ngOnInit() {
-    document.getElementById("warning-div").classList.add("d-none");
-    document.getElementById("input-email").onfocus = ()=>{
-        document.getElementById("input-email").classList.remove("text-danger");
-        document.getElementById("warning-div").classList.remove("d-block");
-        document.getElementById("warning-div").classList.add("d-none");
+    document.getElementById('warning-div').classList.add('d-none');
+    document.getElementById('input-email').onfocus = ()=>{
+        document.getElementById('input-email').classList.remove('text-danger');
+        document.getElementById('warning-div').classList.remove('d-block');
+        document.getElementById('warning-div').classList.add('d-none');
       }
 
-    document.getElementById("input-password").onfocus = ()=>{
-      document.getElementById("input-email").classList.remove("text-danger");
-      document.getElementById("warning-div").classList.remove("d-block");
-      document.getElementById("warning-div").classList.add("d-none");
+    document.getElementById('input-password').onfocus = ()=>{
+      document.getElementById('input-email').classList.remove('text-danger');
+      document.getElementById('warning-div').classList.remove('d-block');
+      document.getElementById('warning-div').classList.add('d-none');
     }
   }
 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     let status = true;
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(credentials.email)){
       status = false;
-      document.getElementById("input-email").classList.add("text-danger");
+      document.getElementById('input-email').classList.add('text-danger');
     }
     return status;
   }
@@ -66,55 +66,55 @@ export class LoginComponent implements OnInit {
   login(credentials){
 
     let adminuser = {
-      _id:"5e4dc00c49bb31321ce5199d",
+      _id:'5e4dc00c49bb31321ce5199d',
         verified:true,
-        email:"admin@gmail.com",
-        firstName:"adminFirst",
-        lastName:"adminLast",
-        password:"ahfdhaf;dhfhdahf;hdafh;ahdhahfahf",
-        type:"ADMIN",
-        address:"",
-        tel:"",
+        email:'admin@gmail.com',
+        firstName:'adminFirst',
+        lastName:'adminLast',
+        password:'ahfdhaf;dhfhdahf;hdafh;ahdhahfahf',
+        type:'ADMIN',
+        address:'',
+        tel:'',
         _v:0,
         key:'sdadafe'
     }
     let customertuser = {
-      _id:"5e4dc00c49bb31321ce5199d",
+      _id:'5e4dc00c49bb31321ce5199d',
         verified:true,
-        email:"lakshmi1997ilike@gmail.com",
-        firstName:"madhu",
-        lastName:"samarapura",
-        password:"$2a$10$DXlfvpY9QVigF2ocSq5O6egTe4ZbpezwWUiJWQ6hPBNBSvADq17Fq",
-        type:"CUSTOMER",
-        address:"",
-        tel:"",
+        email:'lakshmi1997ilike@gmail.com',
+        firstName:'madhu',
+        lastName:'samarapura',
+        password:'$2a$10$DXlfvpY9QVigF2ocSq5O6egTe4ZbpezwWUiJWQ6hPBNBSvADq17Fq',
+        type:'CUSTOMER',
+        address:'',
+        tel:'',
         _v:0,
         key:'sdadafee'
     }
     let garmenttuser = {
-      _id:"5e4cf19e1c9d4400005d508f",
+      _id:'5e4cf19e1c9d4400005d508f',
          verified:true,
-          email:"garment@gmail.com",
-          firstName:"madhu",
-          lastName:"samarapura",
-          password:"$2a$10$DXlfvpY9QVigF2ocSq5O6egTe4ZbpezwWUiJWQ6hPBNBSvADq17Fq",
-          type:"GARMENT",
-          address:"",
-          tel:"",
+          email:'garment@gmail.com',
+          firstName:'madhu',
+          lastName:'samarapura',
+          password:'$2a$10$DXlfvpY9QVigF2ocSq5O6egTe4ZbpezwWUiJWQ6hPBNBSvADq17Fq',
+          type:'GARMENT',
+          address:'',
+          tel:'',
           _v:0,
           key:'sdadafee'
     }
 
-    if(credentials.email==="admin@gmail.com"){
+    if(credentials.email==='admin@gmail.com'){
       localStorage.setItem('user',JSON.stringify(adminuser));
       this.router.navigate(['/adash'])
     }
-    if(credentials.email==="lakshmi1997ilike@gmail.com"){
+    if(credentials.email==='lakshmi1997ilike@gmail.com'){
       localStorage.setItem('user',JSON.stringify(customertuser));
       this.router.navigate(['/cdash'])
     }
 
-     if(credentials.email==="garment@gmail.com"){
+     if(credentials.email==='garment@gmail.com'){
       localStorage.setItem('user',JSON.stringify(garmenttuser));
        this.router.navigate(['/gdash'])
      }

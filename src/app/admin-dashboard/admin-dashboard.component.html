@@ -81,7 +81,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
   </div>
- 
+
   <!-- LATE ORDERS TABLE -->
   <div class="col-4 bg-white row p-2" style="height: fit-content;">
     <h3 class="d-block text-center ml-3">Late Orders</h3>
@@ -209,51 +209,4 @@
   </mat-expansion-panel>
 </div>
 <!-- NOTIFICATION MANAGEMENT -->
-<div class="row"  id="notificationRow">
-  <mat-expansion-panel expanded class="col-12 mt-3 p-1">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h4 id="notificationRowHeading">Notification Management</h4>
-      </mat-panel-title>
-      <mat-panel-description>
-        click to toggle
-      </mat-panel-description>
-    </mat-expansion-panel-header>
 
-    <div id="notificationContainer" class="row">
-       <div class="col-6 bg-white" id="notification-left-panel">
-        <h5 class="d-block p-2">Recent Notifications</h5>
-        <mat-list role="list">
-          <mat-list-item *ngFor="let Notification of Notifications" role="listitem" style="height: fit-content;">
-            <div class="bg-light p-2 col-11 ml-auto mr-auto">
-              <div class="mt-1 "><h4>{{Notification.title}}</h4></div>
-              <div class="mt-1 text-secondary">{{Notification.body}}</div>
-              <button mat-button class="float-right p-2 mt-auto mb-auto" (click)="removeNotification(Notification.id)">Remove</button>
-            </div>
-            <hr>
-          </mat-list-item>
-        </mat-list>
-       </div>
-       <div class="col-6 b-light" id="notification-right-panel">
-        <h5 class="d-block p-2">Add New Notification</h5>
-        <mat-form-field class="col-8">
-          <mat-label>Notification Title</mat-label>
-          <input #inputNotificationTitle matInput placeholder="Notification Title" [(ngModel)]="NotificationTitle" >
-        </mat-form-field>
-        <mat-form-field class="col-5">
-          <mat-label>Target</mat-label>
-          <mat-select #notificationTarget [(ngModel)]="NotificationTarget">
-            <mat-option *ngFor="let target of ['GARMENT','CUSTOMER','ALL']" value="{{target}}" >
-              {{target}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="col-10 ml-auto mr-auto">
-          <mat-label>Enter notification body</mat-label>
-          <textarea #inputNotificationBody matInput placeholder="Enter multiline notification here" [(ngModel)]="NotificationBody"></textarea>
-        </mat-form-field>
-        <button class="col-3 btn btn-danger float-right mr-2" (click)="addNotificaton()">Publish</button>
-       </div>
-    </div>
-  </mat-expansion-panel>
-</div>

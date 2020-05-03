@@ -20,7 +20,8 @@ import {
   MatTableModule,
   MatTabsModule,
   MatCheckboxModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSortModule
 } from '@angular/material';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { LoginComponent } from './login/login.component';
@@ -55,6 +56,8 @@ import { AccountTemplateComponent } from './account-template/account-template.co
 import { DeleteOrderConformationComponent } from './delete-order-conformation/delete-order-conformation.component';
 import { AdminAccountComponent } from './account-template/admin-account/admin-account.component';
 import { GarmentAccountComponent } from './account-template/garment-account/garment-account.component';
+import { NotificationComponent } from './notification/notification.component';
+import { NotificationupdateComponent } from './notificationupdate/notificationupdate.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +88,8 @@ import { GarmentAccountComponent } from './account-template/garment-account/garm
     DeleteOrderConformationComponent,
     AdminAccountComponent,
     GarmentAccountComponent,
+    NotificationComponent,
+    NotificationupdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +108,8 @@ import { GarmentAccountComponent } from './account-template/garment-account/garm
     MatCheckboxModule,
     MatTabsModule,
     MatTableModule,
+    BrowserModule,
+    MatSortModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatListModule,
@@ -119,7 +126,8 @@ import { GarmentAccountComponent } from './account-template/garment-account/garm
   entryComponents:[
     ImageModalComponent,
     OrderFormComponent,
-    QuotationFormComponent
+    QuotationFormComponent,
+    NotificationupdateComponent
   ],
   bootstrap: [AppComponent]
 })

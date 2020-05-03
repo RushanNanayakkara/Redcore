@@ -26,28 +26,28 @@ export class QuotationComponent implements OnInit {
   Quotations = []
 
 
-    displayedColumns = ["ID","Name","IssuedDate", "RequestDate", "Status"];
+    displayedColumns = ['ID','Name','IssuedDate', 'RequestDate', 'Status'];
 
     radioChange(event: MatRadioChange) {
-      //enter get all and get active codes here
-      //might have to implement these functions in the server side
+      // enter get all and get active codes here
+      // might have to implement these functions in the server side
       if(event.source.value=='ALL'){
-        //enter get all code here
-        console.log("All selected");
-      }else if(event.source.value=="ACTIVE"){
-        //enter get active code here
-        console.log("ACTIVE selected");
+        // enter get all code here
+        console.log('All selected');
+      }else if(event.source.value=='ACTIVE'){
+        // enter get active code here
+        console.log('ACTIVE selected');
       }
     }
 
     search(){
-      //enter search code here
+      // enter search code here
 
     }
 
     open() {
       const modalRef = this.modalService.open(QuotationFormComponent,{ size: 'lg', backdrop: 'static' });
-      modalRef.componentInstance.mode = "INPUT";
+      modalRef.componentInstance.mode = 'INPUT';
       modalRef.componentInstance.modalRef = modalRef;
       modalRef.componentInstance.Quotation= {};
       this.needUpdate = true;
@@ -55,7 +55,7 @@ export class QuotationComponent implements OnInit {
 
     openAddOrder(){
       const modalRef = this.modalService.open(OrderFormComponent,{ size: 'lg', backdrop: 'static' });
-      modalRef.componentInstance.mode = "INPUT";
+      modalRef.componentInstance.mode = 'INPUT';
       modalRef.componentInstance.modalRef = modalRef;
       modalRef.componentInstance.QuotationID= this.activeQuotation.id;
       this.needUpdate = true;
@@ -75,9 +75,9 @@ export class QuotationComponent implements OnInit {
      }
 
     ngOnInit() {
-      this.user = JSON.parse(localStorage.getItem("user"));
+      this.user = JSON.parse(localStorage.getItem('user'));
       if(typeof this.user===undefined){
-        this.router.navigate(["/"]);
+        this.router.navigate(['/']);
         return;
       }
       this.viewAll = false;
@@ -85,7 +85,7 @@ export class QuotationComponent implements OnInit {
       setInterval(function(){
         if(this.needUpdate){
           this.updateTable();
-          console.log("came here")
+          console.log('came here')
         }
       }, 3000);
     }
@@ -112,11 +112,11 @@ export class QuotationComponent implements OnInit {
     addToTable(quotation){
       let issuedDate;
       if(typeof quotation.items[0].issuedDate==undefined){
-        issuedDate = "N/A"
+        issuedDate = 'N/A'
       }else{
         issuedDate =  quotation.items[0].issuedDate
       }
-      let dt = new Date(quotation.requestDate).toLocaleDateString("en-US")
+      let dt = new Date(quotation.requestDate).toLocaleDateString('en-US')
       this.Quotations.push(
         {
           id: quotation._id,
@@ -132,7 +132,7 @@ export class QuotationComponent implements OnInit {
           price: quotation.items[0].price,
           issuedDate: issuedDate,
           status: quotation.items[0].status,
-          image:"https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false"
+          image:'https://www.rushordertees.com/design/ZoomImage.php?src=3082864_f&style=4980&colorCode=00&x=240&y=300&width=880&height=880&scale=1.7&watermark=false'
       }
       );
     }
