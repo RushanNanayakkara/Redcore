@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-notificationupdate',
@@ -8,8 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./notificationupdate.component.scss']
 })
 export class NotificationupdateComponent implements OnInit {
-  @Input() mode;
-  @Input() Quotation;
+  @Input() id;
 
   user
   success;
@@ -18,72 +18,81 @@ export class NotificationupdateComponent implements OnInit {
   NotificationBody: any;
   NotificationTarget: string;
   NotificationId: string;
-
-  quotationid: String
-  customerid: String
-  name: String
-  designURL: String
-  designID: String
-  designType: String
-  requestDate: Date
-  issuedDate: Date
-  quantity: Number
-  material: String
-  collarType: String
-  sleeveType: String
-  price: Number
-  validPeriod: Number
   status: String
+  date: any;
+  NotificationType: any;
+  NotificationDate: any;
+  NotificationStatus: any;
 
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, public activeModal: NgbActiveModal) { }
 
-  ngOnInit() {
-    this.Quotation = {}
-    this.user = JSON.parse(localStorage.getItem("user"));
+  async ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
     if (typeof this.user === undefined) {
-      this.router.navigate(["/"]);
+      this.router.navigate(['/']);
       return;
     }
-    this.customerid = this.user._id;
-    this.designType = "REDCORE_DESIGN"
-    this.sleeveType = "SHORT"
-    this.collarType = "NO_COLLAR"
     this.success = false;
     this.fail = false;
+    await this.http.get<any>('http://localhost:8800/notification/id/get', 
+    { observe: 'response', params: { id:  this.id} }).subscribe(response => {
+      if (response.status === 201) {
+          let ntype;
+          if (response.body.type === 'CUSTOMERGLOBAL') {
+            ntype = 'CUSTOMER';
+          } else if (response.body.type === 'GARMENTGLOBAL') {
+            ntype = 'GARMENT';
+          } else {
+            ntype = 'All';
+          }
+          this.NotificationId = response.body._id,
+          this.NotificationTitle = response.body.title;
+          this.NotificationBody = response.body.body;
+          this.NotificationDate = response.body.date;
+          this.NotificationTarget = ntype;
+          this.NotificationStatus = response.body.status;
+      } else {
+        console.log('load notification failed')
+      }
+    })
   }
 
   updateNotificaton() {
-
-  }
-
-  placeQuotation() {
-    let quotation = {
-      customerid: this.customerid,
-      items: [
-        {
-          name: this.Quotation.name,
-          designURL: this.Quotation.designURL,
-          designType: this.Quotation.designType,
-          quantity: this.Quotation.quantity,
-          material: this.Quotation.material,
-          collarType: this.Quotation.collarType,
-          sleeveType: this.Quotation.sleeveType,
-          price: this.Quotation.price,
-          status: "PENDING",
-        }
-      ]
+    this.fail = false;
+    this.success = true;
+    let tempNotificationObj = {
+      type: '',
+      date: this.NotificationDate,
+      status: this.NotificationStatus,
+      title: this.NotificationTitle,
+      body: this.NotificationBody
     }
 
-    this.http.post<any>('http://localhost:3000/quotation/add', quotation, { observe: 'response', }).subscribe(data => {
-      if (typeof data.body._id !== 'undefined') {
+    if (this.NotificationTarget === 'CUSTOMER') {
+      tempNotificationObj.type = 'CUSTOMERGLOBAL';
+    } else if (this.NotificationTarget === 'GARMENT') {
+      tempNotificationObj.type = 'GARMENTGLOBAL';
+    } else {
+      tempNotificationObj.type = 'GLOBAL';
+    }
+
+
+    this.http.patch<any>('http://localhost:8800/notification/update', tempNotificationObj, { observe: 'response', }).subscribe(data => {
+      if (data.status === 201) {
         this.fail = false;
         this.success = true;
+        this.activeModal.close();
       } else {
-        this.success = false;
-        this.fail = true;
+        
+        document.getElementById('warning-div').classList.add('d-block')
+        this.fail = false;
+        this.success = true;
+        this.activeModal.close();
+        alert("updating fail");
       }
-    });
-  }
+    })
+    
+   }
 
 }

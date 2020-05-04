@@ -6,24 +6,19 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationupdateComponent } from '../notificationupdate/notificationupdate.component';
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  id: number,
+  tital: string;
+  body: number;
+  date: string;
+  type: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  { id: 1, tital: 'Hydrogen', body: 1.0079, date: 'H',type: 'xx' },
+  { id: 2, tital: 'Hydrogen', body: 1.0079, date: 'H', type: 'xx' },
 ];
+
+
 
 
 @Component({
@@ -36,8 +31,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class NotificationComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','update','delete'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['id', 'tital', 'body', 'date', 'type', 'update', 'delete'];
+  dataSource;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   Notifications: any[];
@@ -46,21 +41,34 @@ export class NotificationComponent implements OnInit {
   NotificationTarget: string;
   needUpdate: boolean;
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loadNotifications();
+    this.dataSource = new MatTableDataSource(this.Notifications);
+    console.log('ff')
     this.dataSource.sort = this.sort;
   }
 
   constructor(private http: HttpClient, private modalService: NgbModal) { }
 
-  loadNotifications() {
+  async loadNotifications() {
     this.Notifications = []
-    this.http.get<any>('http://localhost:8800/notification/get', { observe: 'response' }).subscribe(response => {
-      if (typeof response.body !== undefined) {
+    await this.http.get<any>('http://localhost:8800/notification/get', { observe: 'response' }).subscribe(response => {
+      if (response.status === 201) {
         response.body.forEach(notificationObject => {
+          let ntype;
+          if (notificationObject.type === 'CUSTOMERGLOBAL') {
+            ntype = 'CUSTOMER';
+          } else if (notificationObject.type ===  'GARMENTGLOBAL') {
+            ntype = 'GARMENT';
+          } else {
+            ntype = 'All';
+          }
           this.Notifications.push({
             id: notificationObject._id,
             title: notificationObject.title,
-            body: notificationObject.body
+            body: notificationObject.body,
+            date: notificationObject.date,
+            type: ntype,
           })
         });
       } else {
@@ -87,7 +95,7 @@ export class NotificationComponent implements OnInit {
     }
 
     this.http.post<any>('http://localhost:8800/notification/add', tempNotificationObj, { observe: 'response' }).subscribe(response => {
-      if (typeof response.body._id !== undefined) {
+      if (response.status === 201) {
         alert('Notification added successfully')
       } else {
         alert('Failed to add notification')
@@ -95,20 +103,22 @@ export class NotificationComponent implements OnInit {
     })
   }
 
-  removeNotification(id) {
-    //Enter code to remove notification with the given input here
-    //Update the notifications list
-    console.log(id + ' removed')
-  }
-  open1(){
-    console.log('ff')
+  async deleten(id) {
+    this.http.delete<any>('http://localhost:8800/notification/delete', { observe: 'response', params: { id: id } }).subscribe(response => {
+      if (response.status === 201) {
+        alert('Notification deleted successfully')
+      } else {
+        alert('Failed to delet notification')
+      }
+    });
+    await this.loadNotifications();
+    this.dataSource = new MatTableDataSource(this.Notifications);
   }
 
-  open() {
-    const modalRef = this.modalService.open(NotificationupdateComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.mode = 'INPUT';
+  update(id) {
+    const modalRef = this.modalService.open(NotificationupdateComponent, { size: 'lg', backdrop: 'static'});
+    modalRef.componentInstance.id = id;
     modalRef.componentInstance.modalRef = modalRef;
-    modalRef.componentInstance.Quotation = {};
     this.needUpdate = true;
   }
 
