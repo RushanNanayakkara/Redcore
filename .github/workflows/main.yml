@@ -1,5 +1,6 @@
 on:
-  workflow_dispatch
+  schedule:
+    - cron: "36 6 * * *"
 jobs:
   fossa-scan:
     runs-on: ubuntu-latest
