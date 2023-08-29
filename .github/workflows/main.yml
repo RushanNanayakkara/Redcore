@@ -13,7 +13,7 @@ jobs:
           api-key: ${{secrets.FOSSAAPIKEY}}
           branch: master
   fossa-scan-1:
-    name: fossa-1
+    name: fossa-11
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
